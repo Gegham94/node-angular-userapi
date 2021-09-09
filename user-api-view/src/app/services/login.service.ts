@@ -5,14 +5,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class LoginService {
-
-  constructor(private http: HttpClient) { }
   
-  getAPIData(){
-    const headers= new HttpHeaders()
-      .set('content-type', 'application/json')
-      .set('Access-Control-Allow-Origin', '*');
-      
-    return this.http.post('http://localhost:3000/users/login', this.http.request, { 'headers': headers });
+  httpOptions: any;
+
+  constructor(private http: HttpClient) { 
+    this.httpOptions= { Headers: new HttpHeaders({
+      'content-type': 'application/json'
+    })}
+  }
+  
+  getAPIData(){ 
+    return this.http.post('http://localhost:3000/users/login', this.httpOptions);
   }
 }

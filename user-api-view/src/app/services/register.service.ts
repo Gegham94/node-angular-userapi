@@ -6,13 +6,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class RegisterService {
 
-  constructor(private http: HttpClient) { }
+  httpOptions: any;
+
+  constructor(private http: HttpClient) { 
+    this.httpOptions= { Headers: new HttpHeaders({
+      'content-type': 'application/json'
+    })}
+  }
   
   getAPIData(){
-    const headers= new HttpHeaders()
-      .set('content-type', 'application/json')
-      .set('Access-Control-Allow-Origin', '*');
-
-    return this.http.post('http://localhost:3000/users/create', this.http.request, { 'headers': headers })
+    return this.http.post('http://localhost:3000/users/create', this.httpOptions)
   }
 }
