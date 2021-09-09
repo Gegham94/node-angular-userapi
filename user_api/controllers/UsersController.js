@@ -11,6 +11,7 @@ exports.loginUser = async (req, res, next) => {
   try {
 
     const {email, password} = req.body;
+    console.log(req.body);
     const user = await User.findOne({email: email});
     if(!user || !user.checkPassword(password)) return res.json({ message: `Incorrect Email or Password !`});
   

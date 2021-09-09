@@ -11,10 +11,6 @@ body {
 	font-family: 'Roboto', sans-serif;
 }
 
-.firstAppPage{
-    text-align: center;
-}
-
 .app-header {
 	justify-content: space-between;
 	position: fixed;

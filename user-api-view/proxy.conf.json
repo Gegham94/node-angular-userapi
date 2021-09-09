@@ -1,0 +1,10 @@
+{
+    "/users/*": {
+      "target": "http://localhost:3000",
+      "pathRewrite": {"^/users" : ""}
+    },
+    "/projects/*": {
+        "target": "http://localhost:3000",
+        "pathRewrite": {"^/projects" : ""}
+    }
+  }
