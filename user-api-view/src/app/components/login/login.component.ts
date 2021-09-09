@@ -10,11 +10,10 @@ export class LoginComponent implements OnInit {
 
   constructor(private loginService : LoginService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  getLoginData(){
-    this.loginService.getAPIData().subscribe((response)=>{
+  submitForm(){
+    this.loginService.submitForm().subscribe((response)=>{
       console.log('response is ', response)
     }, (error) => {
         console.log('error is ', error)

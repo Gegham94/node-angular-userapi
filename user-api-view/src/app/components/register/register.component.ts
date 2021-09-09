@@ -10,12 +10,12 @@ export class RegisterComponent implements OnInit {
 
   User: any = ['Manager', 'Developer'];
 
-  constructor(private registerService : RegisterService) { }
+  constructor(private registerService : RegisterService) {}
 
   ngOnInit(): void {}
 
-  getRegisterData(){
-    this.registerService.getAPIData().subscribe((response)=>{
+  submitForm(){
+    this.registerService.submitForm().subscribe((response)=>{
       console.log('response is ', response)
     }, (error) => {
         console.log('error is ', error)
