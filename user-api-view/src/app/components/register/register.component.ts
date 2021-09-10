@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { RegisterService } from '../../services/register.service';
 
 @Component({
@@ -8,9 +9,14 @@ import { RegisterService } from '../../services/register.service';
 })
 export class RegisterComponent implements OnInit {
 
-  User: any = ['Manager', 'Developer'];
+  UserPossition: any = ['manager', 'developer'];
+  UserGender: any = ['male', 'female'];
 
   constructor(private registerService : RegisterService) {}
+  
+  form = this.registerService.form;
+  onChangeGender = this.registerService.onChangeGender;
+  onChangePossition = this.registerService.onChangePossition;
 
   ngOnInit(): void {}
 

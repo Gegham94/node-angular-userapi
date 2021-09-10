@@ -9,6 +9,7 @@ export class RegisterService {
 
   httpOptions: any;
   form: FormGroup;
+  formData: any = new FormData();
 
   constructor(private http: HttpClient, public fb: FormBuilder) { 
     this.httpOptions= { Headers: new HttpHeaders({
@@ -17,23 +18,33 @@ export class RegisterService {
 
     this.form = this.fb.group({
       email: [''],
+      password: [''],
       firstName: [''],
       lastName: [''],
       gender: [''],
       possition: [''],
-      dateOfBirth: ['']
+      dateOfBirth: [''],
+      image: ['']
     });
   }
-  
+
+  onChangeGender(event: any) {
+    this.form.get("gender")?.setValue(event.source.selected.viewValue)
+  }
+  onChangePossition(event: any) {
+    this.form.get("possition")?.setValue(event.source.selected.viewValue)
+  }
+
   submitForm(){
-    var formData: any = new FormData();
-    formData.append("email", this.form.get('email')?.value);
-    formData.append("password", this.form.get('password')?.value);
-    formData.append("firstName", this.form.get('firstName')?.value);
-    formData.append("lastName", this.form.get('lastName')?.value);
-    formData.append("possition", this.form.get('possition')?.value);
-    formData.append("gender", this.form.get('gender')?.value);
-    formData.append("dateOfBirth", this.form.get('dateOfBirth')?.value);
-    return this.http.post('http://localhost:3000/users/register', formData, this.httpOptions);
+    this.formData.append("email", this.form.get('email')?.value);
+    this.formData.append("password", this.form.get('password')?.value);
+    this.formData.append("firstName", this.form.get('firstName')?.value);
+    this.formData.append("lastName", this.form.get('lastName')?.value);
+    this.formData.append("gender", this.form.get('gender')?.value);
+    this.formData.append("possition", this.form.get('possition')?.value);
+    this.formData.append("dateOfBirth", this.form.get('dateOfBirth')?.value);
+    this.formData.append("image", this.form.get('image')?.value);
+    
+    return this.http.post('http://localhost:3000/users/create', this.formData, this.httpOptions);
   }
 }

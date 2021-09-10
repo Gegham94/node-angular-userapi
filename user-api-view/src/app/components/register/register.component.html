@@ -23,8 +23,16 @@
           <input matInput placeholder="Last name" formControlName="lastName">
         </mat-form-field><br>
 
-        <mat-form-field class="example-full-width">
+        <!-- <mat-form-field class="example-full-width">
           <input matInput placeholder="Gender" formControlName="gender">
+        </mat-form-field><br> -->
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Gender</mat-label>
+          <mat-select (selectionChange)="onChangeGender($event)">
+            <mat-option *ngFor="let userGender of UserGender" [value]="userGender">{{userGender}}
+            </mat-option>
+          </mat-select>
         </mat-form-field><br>
         
         <mat-form-field class="example-full-width">
@@ -32,13 +40,14 @@
         </mat-form-field><br>
 
         <mat-form-field class="example-full-width">
-          <input type="file" matInput placeholder="Image">
+          <ngx-mat-file-input formControlName="image">
+          </ngx-mat-file-input>
         </mat-form-field><br>
 
         <mat-form-field class="example-full-width">
-          <mat-label>Choose Your possition</mat-label>
-          <mat-select>
-            <mat-option [value]="user" *ngFor="let user of User">{{user}}
+          <mat-label>Possition</mat-label>
+          <mat-select (selectionChange)="onChangePossition($event)">
+            <mat-option *ngFor="let userPossition of UserPossition" [value]="userPossition">{{userPossition}}
             </mat-option>
           </mat-select>
         </mat-form-field>

@@ -11,21 +11,20 @@ export class LoginService {
   form: FormGroup;
 
   constructor(private http: HttpClient, public fb: FormBuilder) { 
-    this.httpOptions= { Headers: new HttpHeaders({
+    this.httpOptions = { Headers: new HttpHeaders({
       'content-type': 'application/json'
     })};
 
     this.form = this.fb.group({
-      name: [''],
+      email: [''],
       password: ['']
     });
   }
   
   submitForm() {
-    var formData: any = new FormData();
-    formData.append("email", this.form.get('name')?.value);
-    formData.append("password", this.form.get('avatar')?.value);
-    return this.http.post('http://localhost:3000/users/login', formData, this.httpOptions);
-  
+    return this.http.post('http://localhost:3000/users/login', {
+      email: this.form.get('email')?.value,
+      password: this.form.get('password')?.value
+    }, this.httpOptions);
   }
 }

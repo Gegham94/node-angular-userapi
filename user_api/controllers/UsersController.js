@@ -53,6 +53,7 @@ exports.createUser = async(req, res, next) => {
     if(!checked.status) return res.json(checked)
 
     const { email, firstName, lastName, possition, gender, dateOfBirth, password } = req.body;
+    
     const user = await User.findOne({email: email})
     if(user) return res.json({message: `User with email ${email} already exist`});
 

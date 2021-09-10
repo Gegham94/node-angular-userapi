@@ -4,6 +4,7 @@ import { AngularMaterialModule } from './angular-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 
 import { AppRoutingModule } from './routes/app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,7 +28,8 @@ import { LoginService} from './services/login.service';
     FormsModule, 
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxMatFileInputModule
   ],
   providers: [RegisterService, LoginService],
   bootstrap: [AppComponent],
