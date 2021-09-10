@@ -9,11 +9,11 @@ import { RegisterService } from '../../services/register.service';
 })
 export class RegisterComponent implements OnInit {
 
-  UserPossition: any = ['manager', 'developer'];
-  UserGender: any = ['male', 'female'];
+  UserPossition: any = ['Manager', 'Developer'];
+  UserGender: any = ['Male', 'Female'];
 
   constructor(private registerService : RegisterService) {}
-  
+
   form = this.registerService.form;
   onChangeGender = this.registerService.onChangeGender;
   onChangePossition = this.registerService.onChangePossition;

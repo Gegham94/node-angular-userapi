@@ -29,10 +29,10 @@ export class RegisterService {
   }
 
   onChangeGender(event: any) {
-    this.form.get("gender")?.setValue(event.source.selected.viewValue)
+    this.form.get("gender")?.setValue((event.source.selected.viewValue).toLowerCase());
   }
   onChangePossition(event: any) {
-    this.form.get("possition")?.setValue(event.source.selected.viewValue)
+    this.form.get("possition")?.setValue((event.source.selected.viewValue).toLowerCase());
   }
 
   submitForm(){
