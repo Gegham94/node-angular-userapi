@@ -16,6 +16,7 @@ import { UsersComponent } from './components/users/users.component';
 import { RegisterService } from './services/register.service';
 import { LoginService} from './services/login.service';
 import { UsersService} from './services/users.service';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,15 @@ import { UsersService} from './services/users.service';
     HttpClientModule,
     NgxMatFileInputModule
   ],
-  providers: [RegisterService, LoginService, UsersService],
+  providers: [
+    RegisterService,
+    LoginService,
+    UsersService,
+    {
+      provide: LocationStrategy, 
+      useClass: HashLocationStrategy
+    }
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
