@@ -1,0 +1,30 @@
+.table {
+    width: 100%;
+  }
+  
+  .mat-column-firstName {
+    width: 32px;
+    border-right: 1px solid currentColor;
+    padding-right: 24px;
+    text-align: center;
+  }
+  
+  .mat-column-lastName {
+    width: 32px;
+    border-right: 1px solid currentColor;
+    padding-right: 24px;
+    text-align: center;
+  }
+  
+  .mat-column-gender {
+    font-style: italic;
+  }
+
+  .mat-column-possition {
+    font-style: italic;
+  }
+
+  .mat-column-dateOfBirth {
+    font-style: italic;
+  }
+  

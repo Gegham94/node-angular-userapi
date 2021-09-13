@@ -7,7 +7,7 @@ const authUser = require('../middlewares/authUser');
 const multer = require('multer');
 const upload = multer({storage : multer.memoryStorage()});
 
-router.get('/', authUser, user.getAllUsers);
+router.get('/', user.getAllUsers);
 router.get('/:id', authUser, user.getUserById);
 router.post('/create', upload.single("image") , user.createUser);
 router.put('/update/:id', authUser, user.updateUser);
