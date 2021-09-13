@@ -7,6 +7,7 @@ exports.generateAccessToken = () => {
   });
 };
 
+
 // exports.generateRefreshToken = (uuidv4) => {
 //   return jwt.sign({uuidv4}, secretKey, {
 //     algorithm: 'HS256',

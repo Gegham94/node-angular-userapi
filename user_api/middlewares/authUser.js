@@ -38,7 +38,6 @@ module.exports = async (req, res, next) => {
     //     return res.json(newTokens);
     //   };
     // });
-
   } catch (err) {
     // //check error type, if token is expired - return error
     // if(err instanceof jwt.TokenExpiredError) {

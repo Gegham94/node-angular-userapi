@@ -4,7 +4,7 @@ const { payload } = require('../config/configuration.json').jwt;
 const authHelper = require('../helper/authHelper');
 
 exports.updateTokens = async() => {
-
+  
   const accessToken = await authHelper.generateAccessToken(payload);
   // const refreshToken = await authHelper.generateRefreshToken(uuidv4());
 
