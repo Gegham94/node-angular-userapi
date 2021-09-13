@@ -128,7 +128,7 @@ exports.sendEmail = async (req, res, next, email, firstName) => {
     //get user data
     random = `Sec-${uuidv4()}-Code`;
     host = req.get('host');
-    link = `http://${host}/users/email/verify?id=${random}_${email}`;
+    link = `http://${host}/users-api/email/verify?id=${random}_${email}`;
 
     //create mail options
     const mailOptions = {

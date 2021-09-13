@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true , limit: '50mb' }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/users', usersRouter);
-app.use('/projects', projectsRouter);
+app.use('/users-api', usersRouter);
+app.use('/projects-api', projectsRouter);
 
 module.exports = app;

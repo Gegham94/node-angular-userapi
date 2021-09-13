@@ -6,7 +6,7 @@ const authUser = require('../middlewares/authUser');
 const multer = require('multer');
 const upload = multer({storage : multer.memoryStorage()});
 
-router.get('/', authUser, projects.getAllProjects);
+router.get('/all-projects', authUser, projects.getAllProjects);
 router.get('/:id', authUser, projects.getProjectById);
 router.post('/create', authUser, upload.single("document"), projects.createProject);
 router.put('/assign_manager/:id', authUser, projects.assignProjectManager);

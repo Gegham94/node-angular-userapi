@@ -1,0 +1,12 @@
+{
+  "/users-api/*": {
+    "target": "http://localhost:3000",
+    "pathRewrite": {"^/users-api" : ""},
+    "secure": false
+  },
+  "/projects-api/*": {
+    "target": "http://localhost:3000",
+    "pathRewrite": {"^/projects-api" : ""},
+    "secure": false
+  }
+}

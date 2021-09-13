@@ -4,11 +4,9 @@ import { LoginComponent } from '../components/login/login.component';
 import { RegisterComponent } from '../components/register/register.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'users/login' },
-  // {path: 'users/login', loadChildren: () => import('../components/login/login.component').then(m => m.LoginComponent)},
-  // {path: 'users/create', loadChildren: () => import('../components/register/register.component').then(m => m.RegisterComponent)},
-  { path: 'users/login', component: LoginComponent },
-  { path: 'users/create', component: RegisterComponent }
+  { path: '', pathMatch: 'full', redirectTo: 'users-api/login' },
+  { path: 'users-api/login', component: LoginComponent },
+  { path: 'users-api/create', component: RegisterComponent }
 ];
 
 @NgModule({
