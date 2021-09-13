@@ -12,11 +12,7 @@ export class RegisterComponent implements OnInit {
   UserPossition: any = ['Manager', 'Developer'];
   UserGender: any = ['Male', 'Female'];
 
-  constructor(private registerService : RegisterService) {}
-
-  form = this.registerService.form;
-  onChangeGender = this.registerService.onChangeGender;
-  onChangePossition = this.registerService.onChangePossition;
+  constructor(public registerService : RegisterService) {}
 
   ngOnInit(): void {}
 

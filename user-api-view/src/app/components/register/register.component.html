@@ -4,7 +4,7 @@
       <mat-card-title>Register</mat-card-title>
     </mat-card-header>
 
-    <form [formGroup]="form" (ngSubmit)="submitForm()" class="example-form">
+    <form [formGroup]="registerService.form" (ngSubmit)="submitForm()" class="example-form">
 
       <mat-card-content>
         <mat-form-field class="example-full-width">
@@ -23,13 +23,9 @@
           <input matInput placeholder="Last name" formControlName="lastName">
         </mat-form-field><br>
 
-        <!-- <mat-form-field class="example-full-width">
-          <input matInput placeholder="Gender" formControlName="gender">
-        </mat-form-field><br> -->
-
         <mat-form-field class="example-full-width">
           <mat-label>Gender</mat-label>
-          <mat-select (selectionChange)="onChangeGender($event)">
+          <mat-select (selectionChange)="registerService.onChangeGender($event)">
             <mat-option *ngFor="let userGender of UserGender" [value]="userGender">{{userGender}}
             </mat-option>
           </mat-select>
@@ -46,7 +42,7 @@
 
         <mat-form-field class="example-full-width">
           <mat-label>Possition</mat-label>
-          <mat-select (selectionChange)="onChangePossition($event)">
+          <mat-select (selectionChange)="registerService.onChangePossition($event)">
             <mat-option *ngFor="let userPossition of UserPossition" [value]="userPossition">{{userPossition}}
             </mat-option>
           </mat-select>
