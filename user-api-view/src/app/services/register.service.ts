@@ -2,11 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup } from "@angular/forms";
 
+import { environment } from 'src/environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
 
+  API_URL = environment.API_URL;
   httpOptions: any;
   form: FormGroup;
   formData: any = new FormData();
@@ -45,6 +48,6 @@ export class RegisterService {
     this.formData.append("dateOfBirth", this.form.get('dateOfBirth')?.value);
     this.formData.append("image", this.form.get('image')?.value);
     
-    return this.http.post('http://localhost:3000/users-api/create', this.formData, this.httpOptions);
+    return this.http.post(`${this.API_URL}/create`, this.formData, this.httpOptions);
   }
 }
