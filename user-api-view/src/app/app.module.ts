@@ -41,7 +41,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     LoginService,
     UsersService,
     {
-      provide: LocationStrategy, 
+      provide: LocationStrategy,
       useClass: HashLocationStrategy
     }
   ],

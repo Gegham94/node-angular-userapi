@@ -1,10 +1,9 @@
 {
   "DB" : "mongodb://localhost:27017/user_api_db",
   "media": {
-    "directory": "public/files"
+    "directory": "files/"
   },
   "jwt": {
-    "payload": "a8CdFj-koP8RcdFgF07hJa1cv",
     "secretKey": "fg1C0-Sec77coPltuYdeAc99"
   },
   "smtpServer": {

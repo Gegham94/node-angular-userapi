@@ -11,15 +11,16 @@ import { User } from '../../_models/user';
 })
 export class UsersComponent implements OnInit {
 
-  displayedColumns: string[] = ['firstName', 'lastName', 'possition', 'gender', 'dateOfBirth'];
-  dataSource!: MatTableDataSource<User>;
   resData: User[] = [];
+  displayedColumns: string[] = ['image', 'firstName', 'lastName', 'possition', 'gender', 'dateOfBirth'];
+  dataSource!: MatTableDataSource<User>;
 
   constructor(public usersService : UsersService) { }
 
   ngOnInit(): void {
-    this.usersService.getAll().subscribe((response: any) => this.resData = response as User[]);
-    this.dataSource = new MatTableDataSource(this.resData);
-    console.log(this.dataSource)
+    this.usersService.getAll().subscribe((response: any) => {
+      this.resData = response as User[];
+      this.dataSource = new MatTableDataSource(this.resData);
+    });
   }
 }

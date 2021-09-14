@@ -1,30 +1,48 @@
 .table {
-    width: 100%;
-  }
-  
-  .mat-column-firstName {
-    width: 32px;
-    border-right: 1px solid currentColor;
-    padding-right: 24px;
-    text-align: center;
-  }
-  
-  .mat-column-lastName {
-    width: 32px;
-    border-right: 1px solid currentColor;
-    padding-right: 24px;
-    text-align: center;
-  }
-  
-  .mat-column-gender {
-    font-style: italic;
-  }
-
-  .mat-column-possition {
-    font-style: italic;
-  }
-
-  .mat-column-dateOfBirth {
-    font-style: italic;
-  }
-  
+  width: 100%;
+}
+.mat-header-cell{
+  font-size: 15px;
+  font-weight: bolder;
+  color: black;
+}
+.userImage{
+  width: 70%;
+  height: 70%;
+}
+.mat-column-image {
+  width: 15%;
+  height: 150px;
+  border-right: 1px solid currentColor;
+  text-align: center;
+}
+.mat-column-firstName {
+  width: 15%;
+  height: 150px;
+  border-right: 1px solid currentColor;
+  text-align: center;
+}
+.mat-column-lastName {
+  width: 15%;
+  height: 150px;
+  border-right: 1px solid currentColor;
+  text-align: center;
+}
+.mat-column-gender {
+  width: 15%;
+  height: 150px;
+  border-right: 1px solid currentColor;
+  text-align: center;
+}
+.mat-column-possition {
+  width: 15%;
+  height: 150px;
+  border-right: 1px solid currentColor;
+  text-align: center;
+}
+.mat-column-dateOfBirth {
+  width: 15%;
+  height: 150px;
+  border-right: 1px solid currentColor;
+  text-align: center;
+}

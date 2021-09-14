@@ -2,7 +2,7 @@ const User = require('../schema/User');
 const valid = require('../validation/validate');
 const conf = require('../config/configuration.json');
 const verifyEmailTemplate = require('../utils/verifyEmailTemplate');
-const { updateTokens } = require('../helper/generateTokens');
+const { createToken } = require('../helper/createToken');
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 const fs = require('fs');
@@ -14,10 +14,10 @@ exports.loginUser = async (req, res, next) => {
     const user = await User.findOne({email: email});
     if(!user || !user.checkPassword(password)) return res.json({ message: `Incorrect Email or Password !`});
   
-    const token = await updateTokens();
+    const token = await createToken(user.id, res);
     if(!token) return res.json({message: 'Token does not created !'});
 
-    return res.json({ message: 'Login is succesfuly done', token, user });
+    return res.json({ message: 'Logged in successfully done 👌', user });
     
   } catch (error) {
     return next(error);
@@ -63,7 +63,7 @@ exports.createUser = async(req, res, next) => {
     } 
 
     const newImageUniqueName = uuidv4();
-    fs.writeFileSync(`${conf.media.directory}/images/${newImageUniqueName}${path.extname(req.file.originalname)}`, req.file.buffer);
+    fs.writeFileSync(`public/${conf.media.directory}images/${newImageUniqueName}${path.extname(req.file.originalname)}`, req.file.buffer);
 
     const newUser = new User({
       email,
@@ -73,7 +73,7 @@ exports.createUser = async(req, res, next) => {
       gender,
       dateOfBirth,
       password,
-      image: `http://localhost:3000/${conf.media.directory}/images/${newImageUniqueName}${path.extname(req.file.originalname)}`
+      image: `http://localhost:3000/${conf.media.directory}images/${newImageUniqueName}${path.extname(req.file.originalname)}`
     });
   
     await newUser.save()
