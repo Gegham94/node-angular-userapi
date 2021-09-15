@@ -8,20 +8,22 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UsersService {
-  
 
   API_URL = environment.API_URL;
-  headers: any = new HttpHeaders();
+  httpOptions : any;
+  token;
 
   constructor(private http: HttpClient) { 
-    this.headers.append('content-type', 'application/json');
-    this.headers.append('x-authorization', `${localStorage.getItem('access_token')}`);
+    this.token = localStorage.getItem('access_token');
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'x-authorization': `${this.token}`
+      })
+    }
   }
 
   getAll() {
-    console.log(111111111,this.headers);
-
-    return this.http.get(`${this.API_URL}/list`, this.headers);
+    return this.http.get(`${this.API_URL}/list`, this.httpOptions);
   }
   getById(id: number) {
     return this.http.get(`${this.API_URL}` + id);
