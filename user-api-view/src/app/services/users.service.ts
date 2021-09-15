@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { User } from '../_models/user';
 import { environment } from 'src/environments/environment';
@@ -8,13 +8,20 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UsersService {
+  
 
   API_URL = environment.API_URL;
+  headers: any = new HttpHeaders();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.headers.append('content-type', 'application/json');
+    this.headers.append('x-authorization', `${localStorage.getItem('access_token')}`);
+  }
 
   getAll() {
-    return this.http.get(`${this.API_URL}/list`);
+    console.log(111111111,this.headers);
+
+    return this.http.get(`${this.API_URL}/list`, this.headers);
   }
   getById(id: number) {
     return this.http.get(`${this.API_URL}` + id);

@@ -15,11 +15,13 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   submitForm(){
-    this.loginService.submitForm().subscribe((response)=>{
-      console.log('response is ', response);
-      this.router.navigate(['/users-api/list']);
+    this.loginService.submitForm().subscribe((response: any)=>{
+
+      localStorage.setItem('access_token', response.token);
+      this.router.navigate(['users-api/list']);
+
     }, (error) => {
-        console.log('error is ', error)
+        console.log('error is ', error);
     });
   }
 }

@@ -6,7 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthGuard } from './auth.guard';
+
+import { AuthGuard } from './_guard/auth.guard';
 
 import { AppRoutingModule } from './routes/app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,13 +36,13 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    NgxMatFileInputModule
+    NgxMatFileInputModule,
   ],
   providers: [
+    AuthGuard,
     RegisterService,
     LoginService,
     UsersService,
-    AuthGuard,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy

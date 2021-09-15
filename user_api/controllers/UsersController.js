@@ -17,7 +17,7 @@ exports.loginUser = async (req, res, next) => {
     const token = await createToken(user.id, res);
     if(!token) return res.json({message: 'Token does not created !'});
 
-    return res.json({ message: 'Logged in successfully done 👌', user });
+    return res.json({ message: 'Logged in successfully done 👌', token });
     
   } catch (error) {
     return next(error);
