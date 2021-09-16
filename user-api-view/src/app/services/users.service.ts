@@ -26,12 +26,12 @@ export class UsersService {
     return this.http.get(`${this.API_URL}/list`, this.httpOptions);
   }
   getById(id: number) {
-    return this.http.get(`${this.API_URL}` + id);
+    return this.http.get(`${this.API_URL}` + id, this.httpOptions);
   }
   update(user: User) {
-    return this.http.put(`${this.API_URL}/update` + user.id, user);
+    return this.http.put(`${this.API_URL}/update` + user.id, user, this.httpOptions);
   }
   delete(id: number) {
-    return this.http.delete(`${this.API_URL}/delete` + id);
+    return this.http.delete(`${this.API_URL}/delete` + id, this.httpOptions);
   }
 }

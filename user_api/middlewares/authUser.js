@@ -5,7 +5,7 @@ module.exports = async (req, res, next) => {
 
   const token = req.headers['x-authorization'];
   if (!token) {
-    return res.status(403).send('Token is not provided !')
+    return res.status(403).send('Token is not provided !');
   }
 
   try{
@@ -14,7 +14,7 @@ module.exports = async (req, res, next) => {
     
   } catch (err) {
     if(err instanceof jwt.JsonWebTokenError){
-      return res.json({message: 'Invalid token !'});
+      return res.status(401).send('Invalid token !');
     };
   }
 };

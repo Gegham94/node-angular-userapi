@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { AppComponent } from '../../app.component';
 import { LoginService } from '../../services/login.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { LoginService } from '../../services/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public loginService : LoginService, private router: Router) { }
+  constructor(private appComponent: AppComponent, public loginService : LoginService, private router: Router) { }
 
   ngOnInit(): void {}
 
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
     this.loginService.submitForm().subscribe((response: any)=>{
 
       localStorage.setItem('access_token', response.token);
+      this.appComponent.isUserLoggedIn = true;
       this.router.navigate(['users-api/list']);
 
     }, (error) => {
