@@ -40,7 +40,7 @@ exports.getUserById = async(req, res, next) => {
   try{
     const user = await User.findById({ _id: req.params.id})
     if(!user) return res.json({message: 'User is not found'});
-    return res.json({message: "User", user });
+    return res.status(200).send({user});
     
   }catch(err){
     return next(err);
@@ -50,21 +50,18 @@ exports.getUserById = async(req, res, next) => {
 exports.createUser = async(req, res, next) => {
   try{
     const checked = await valid.checkUserInfo(req, res);
-    if(!checked.status) return res.json(checked)
-
+    if(!checked.status) return res.json(checked);
+    
     const { email, firstName, lastName, possition, gender, dateOfBirth, password } = req.body;
     
     const user = await User.findOne({email: email})
     if(user) return res.status(409).send({message: `User with email ${email} already exist`});
-
+    
     const match = ["image/png", "image/jpeg", "image/jpg"];
     if(match.indexOf(req.file.mimetype) === -1){
-      return res.json({status: 'Fail', message: 'Incorrect image type'})
+      return res.json({status: 'Fail', message: 'Incorrect image type'});
     } 
-
-    const token = await createToken(user.id, res);
-    if(!token) return res.json({message: 'Token does not created !'});
-
+    
     const newImageUniqueName = uuidv4();
     fs.writeFileSync(`public/${conf.media.directory}images/${newImageUniqueName}${path.extname(req.file.originalname)}`, req.file.buffer);
 
@@ -81,14 +78,20 @@ exports.createUser = async(req, res, next) => {
   
     await newUser.save()
       .then(async savedUser => {
-        await verifyEmailTemplate.sendEmail(req, res, next, email, firstName);
-        return res.json({ message: 'User is saved', data: savedUser, token});
+        const token = await createToken(savedUser.id);
+        if(!token) return res.json({message: 'Token does not created !'});
+
+        // const emailSender = await verifyEmailTemplate.sendEmail(req, res, next, email, firstName);
+        // if(!emailSender.status) return res.json({message: "Email is not sended"});
+
+        return res.json({token});
+        
       }).catch(err => {
-        return res.status(201).send({ message: 'User is not saved !', data: err });
+        return res.status(201).send({ message: 'User is not saved !', status: err });
       });
 
   } catch (err) {
-    return res.json({ message: 'Some error occurred while creating the User', data: err });
+    throw new Error('Some error occurred while creating the User');
   }
 };
 
@@ -98,12 +101,13 @@ exports.updateUser = async(req, res) => {
     if(!checked.status) return res.json(checked)
 
     const id = req.params.id;
+    console.log(req.body);
     User.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-      .then(data => {
-        if(!data){
-          return res.status(404).send({message: 'User is not found !'});
+      .then(user => {
+        if(!user){
+          return res.json({status: 'fail', message: 'User is not found !'});
         }else {
-          return res.status(200).send({message: 'User is updated', data});
+          return res.json({status: 'done', message: 'User is successfuly updated'});
         }
       }).catch(err => {
         res.json({message: "Error", data: err})
@@ -122,9 +126,9 @@ exports.deleteUser = async(req, res) => {
     User.findByIdAndRemove({ _id: id})
       .then(data => {
         if(!data){
-          return res.status(404).send({message: 'User is not found !'});
+          return res.json({status: 'fail', message: 'User is not found !'});
         }else {
-          return res.status(404).send({message: 'User is successfuly deleted'});
+          return res.json({status: 'done', message: 'User is successfuly deleted'});
         }
       });
     

@@ -1,0 +1,66 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+<mat-card >
+<div class="container">
+    <div class="row profile">
+		<div class="col-md-4">
+			<div class="profile-sidebar">
+
+        <div class="profile-userpic">
+					<img src="{{image}}" class="img-responsive" alt="">
+				</div>
+
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+						{{firstName}} {{lastName}}
+					</div><br>
+          <div class="profile-usertitle-info">
+						Email - {{email}}
+					</div>
+          <div class="profile-usertitle-info">
+						Possition - {{possition}}
+					</div>
+          <div class="profile-usertitle-info">
+						Gender - {{gender}}
+					</div>
+          <div class="profile-usertitle-info">
+						Date of Birth - {{dateOfBirth}}
+					</div>
+				</div>
+
+				<div class="profile-userbuttons">
+          <button mat-raised-button type="button" class="btn btn-warning" (click)="openPopup()">Edit</button>
+          <button mat-raised-button type="button" class="btn btn-danger" (click)="deleteUser()">Delete</button>
+				</div>
+
+			</div>
+		</div>
+
+    <div class="profile-userpic">
+      <img src="{{image}}" class="img-fluid">
+    </div>
+
+	</div>
+</div>
+</mat-card>
+
+<!-- <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Shiba Inu</mat-card-title>
+      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+        bred for hunting.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>Edit</button>
+      <button mat-button>Delete</button>
+    </mat-card-actions>
+  </mat-card> -->

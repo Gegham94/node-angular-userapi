@@ -16,11 +16,14 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   submitForm(){
-    this.loginService.submitForm().subscribe((response: any)=>{
-
+    this.loginService.sendData().subscribe((response: any)=>{
       localStorage.setItem('access_token', response.token);
+
       this.appComponent.isUserLoggedIn = true;
+      this.appComponent.title = 'Users list';
+      
       this.router.navigate(['users-api/list']);
+      this.loginService.form.reset();
 
     }, (error) => {
         console.log('error is ', error);

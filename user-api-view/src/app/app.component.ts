@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   isUserLoggedIn: boolean = false;
-  title = 'User Application';
+  title = 'User APP';
 }

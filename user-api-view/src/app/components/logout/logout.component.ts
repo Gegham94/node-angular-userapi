@@ -11,16 +11,14 @@ import { AppComponent } from '../../app.component';
 export class LogoutComponent implements OnInit {
 
   isUserLoggedIn!: boolean;
-  title!: string;
+  title: string = 'User APP';
   
-  constructor(private appComponent: AppComponent, private router: Router) {
-    this.isUserLoggedIn = appComponent.isUserLoggedIn;
-    this.title = appComponent.title;
-  }
+  constructor(private appComponent: AppComponent, private router: Router) {}
 
   ngOnInit(): void {
     localStorage.removeItem('access_token');
     this.appComponent.isUserLoggedIn = false;
+    this.appComponent.title = this.title;
     this.router.navigate(['users-api/login']);
   }
 }

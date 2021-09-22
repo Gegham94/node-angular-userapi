@@ -25,13 +25,13 @@ export class UsersService {
   getAll() {
     return this.http.get(`${this.API_URL}/list`, this.httpOptions);
   }
-  getById(id: number) {
-    return this.http.get(`${this.API_URL}` + id, this.httpOptions);
+  getById(id: string) {
+    return this.http.get(`${this.API_URL}/` + id, this.httpOptions);
   }
-  update(user: User) {
-    return this.http.put(`${this.API_URL}/update` + user.id, user, this.httpOptions);
+  update(id: string, user: User) {
+    return this.http.put(`${this.API_URL}/update/` + id, user, this.httpOptions);
   }
-  delete(id: number) {
-    return this.http.delete(`${this.API_URL}/delete` + id, this.httpOptions);
+  delete(id: string) {
+    return this.http.delete(`${this.API_URL}/delete/` + id, this.httpOptions);
   }
 }

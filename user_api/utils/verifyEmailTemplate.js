@@ -138,21 +138,18 @@ exports.sendEmail = async (req, res, next, email, firstName) => {
       html: template( firstName, link )
     };
 
-    console.log(mailOptions);
     //send email verification
     const sendDone = await transporter.sendMail(mailOptions);
 
-    console.log(sendDone);
-
     //if verification message is not sended - return error
     if(!sendDone){
-      return next({staus: false, message: "Email is not sended"});
+      return res.json({staus: false });
     }
 
     //close opened transport 
     transporter.close();
     
-    return res.json({status: true, message: 'Email is sended'});
+    return res.json({status: true});
 
   } catch (err){
     return next(err);
@@ -162,8 +159,6 @@ exports.sendEmail = async (req, res, next, email, firstName) => {
 exports.verifyEmail = async(req, res, next) => {
   try{
 
-    console.log(req.protocol);
-    console.log(req.get('host'));
     //chechking protocols are equals or not
     if(`${req.protocol}://${req.get('host')}` === `http://${host}`){
       if(req.query.id.split('_')[0] === random){
@@ -182,7 +177,7 @@ exports.verifyEmail = async(req, res, next) => {
         return res.json({status: false, message: 'Your email is not verifyed'});
       }
     } else {
-      return res.json({status: false, message: 'Please check the link _ is corrent or Not'});
+      return res.json({status: false, message: 'Please check the link is corrent or not'});
     }
 
   } catch (err) {

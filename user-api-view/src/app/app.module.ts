@@ -10,24 +10,33 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AuthGuard } from './_guard/auth.guard';
 
+import { RegisterService } from './services/register.service';
+import { LoginService} from './services/login.service';
+import { UsersService} from './services/users.service';
+
 import { AppRoutingModule } from './routes/app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UsersComponent } from './components/users/users.component';
+import { UserComponent, UserPopupComponent } from './components/user/user.component';
 
-import { RegisterService } from './services/register.service';
-import { LoginService} from './services/login.service';
-import { UsersService} from './services/users.service';
+
+
 
 @NgModule({
+  entryComponents: [
+    UserPopupComponent
+  ],
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
     UsersComponent,
     LogoutComponent,
+    UserComponent,
+    UserPopupComponent
   ],
   imports: [
     BrowserModule,

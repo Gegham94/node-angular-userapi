@@ -24,7 +24,7 @@ export class LoginService {
     });
   }
   
-  submitForm() {
+  sendData() {
     return this.http.post(`${this.API_URL}/login`, {
       email: this.form.get('email')?.value,
       password: this.form.get('password')?.value

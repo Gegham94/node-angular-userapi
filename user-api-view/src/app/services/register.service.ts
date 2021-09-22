@@ -38,7 +38,7 @@ export class RegisterService {
     this.form.get("possition")?.setValue((event.source.selected.viewValue).toLowerCase());
   }
 
-  submitForm(){
+  sendData(){
     this.formData.append("email", this.form.get('email')?.value);
     this.formData.append("password", this.form.get('password')?.value);
     this.formData.append("firstName", this.form.get('firstName')?.value);
