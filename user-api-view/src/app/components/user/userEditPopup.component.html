@@ -1,0 +1,46 @@
+<div mat-dialog-content style="text-align: center;">
+  <p style="font-weight: bold">User information</p>
+  <p>Change fields that You want</p>
+  <mat-form-field>
+    <mat-label>First name</mat-label>
+    <input matInput [(ngModel)]="data.firstName">
+  </mat-form-field><br>
+
+  <mat-form-field>
+    <mat-label>Last name</mat-label>
+    <input matInput [(ngModel)]="data.lastName">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Possition</mat-label>
+    <mat-select (selectionChange)="onChangePossition($event)">
+      <mat-option *ngFor="let userPossition of UserPossition" [value]="userPossition">{{userPossition}}
+      </mat-option>
+    </mat-select>
+    <!-- <input matInput [(ngModel)]="data.possition"> -->
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>Gender</mat-label>
+    <mat-select (selectionChange)="onChangeGender($event)">
+      <mat-option *ngFor="let userGender of UserGender" [value]="userGender">{{userGender}}
+      </mat-option>
+    </mat-select>
+    <!-- <input matInput [(ngModel)]="data.gender"> -->
+  </mat-form-field><br>
+
+  <mat-form-field>
+    <mat-label>Date of Birth</mat-label>
+    <input matInput [(ngModel)]="data.dateOfBirth">
+  </mat-form-field><br>
+
+  <mat-form-field>
+    <mat-label>Image</mat-label>
+    <ngx-mat-file-input [(ngModel)]="data.image">
+    </ngx-mat-file-input>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-button (click)="onOkClick(data)" cdkFocusInitial>Ok</button>
+</div>

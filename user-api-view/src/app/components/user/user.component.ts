@@ -13,6 +13,7 @@ import { UsersService } from '../../services/users.service';
 })
 export class UserComponent implements OnInit {
 
+  id: any;
   email: any;
   firstName: any;
   lastName: any;
@@ -21,29 +22,24 @@ export class UserComponent implements OnInit {
   dateOfBirth: any;
   image: any;
 
-  user : any;
-
   constructor(
     private activateRouter: ActivatedRoute, 
     public usersService : UsersService, 
-    private router: Router,
     public dialog: MatDialog
-  ) 
-  { }
+  ) { }
 
   ngOnInit(): void {
     this.activateRouter.params.subscribe(params => {
       this.usersService.getById(params.id).subscribe((response: any)=>{
-        
-        this.user = response.user;
 
-        this.email = this.user.email;
-        this.firstName = this.user.firstName;
-        this.lastName = this.user.lastName;
-        this.possition = this.user.possition;
-        this.gender = this.user.gender;
-        this.dateOfBirth = this.user.dateOfBirth;
-        this.image = this.user.image;
+        this.id = response.user._id
+        this.email = response.user.email;
+        this.firstName = response.user.firstName;
+        this.lastName = response.user.lastName;
+        this.possition = response.user.possition;
+        this.gender = response.user.gender;
+        this.dateOfBirth = response.user.dateOfBirth;
+        this.image = response.user.image;
         
       }, (error) => {
         console.log('error is ', error);
@@ -51,65 +47,93 @@ export class UserComponent implements OnInit {
     });
   }
 
-  openPopup(): void {
-    const dialogRef = this.dialog.open(UserPopupComponent, {
+  openEditPopup(): void {
+    this.dialog.open(UserEditPopupComponent, {
       width: '250px',
       data: {
-        firstName : this.user.firstName,
-        lastName : this.user.lastName,
-        possition : this.user.possition,
-        gender : this.user.gender,
-        dateOfBirth : this.user.dateOfBirth
+        id: this.id,
+        firstName : this.firstName,
+        lastName : this.lastName,
+        possition : this.possition,
+        gender : this.gender,
+        dateOfBirth : this.dateOfBirth,
+        image: this.image
       }
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.usersService.update(this.user._id, result).subscribe((response: any)=>{
-        console.log(response);
-      }, (error) => {
-        console.log('error is ', error);
-      });
-    
-    });
   }
-
-  deleteUser(){
-    this.usersService.delete(this.user._id).subscribe((response: any)=>{
-      if(response.status == 'fail') console.log(response.message);
-      if(response.status == 'done') this.router.navigate(['users-api/list']);
-    }, (error) => {
-      console.log('error is ', error);
+  openDeletePopup(){
+    this.dialog.open(UserDeletePopupComponent, {
+      width: '200px',
+      data: {
+        id: this.id,
+      }
     });
   }
 }
 
+
 @Component({
-  selector: 'app-user',
-  templateUrl: './userpopup.component.html',
+  selector: 'app-userEditPopup',
+  templateUrl: './userEditPopup.component.html',
 })
-export class UserPopupComponent {
+export class UserEditPopupComponent {
 
   UserPossition: any = ['Manager', 'Developer'];
   UserGender: any = ['Male', 'Female'];
   form: FormGroup;
 
   constructor(
-    public dialogRef: MatDialogRef<UserPopupComponent>,
+    public dialogRef: MatDialogRef<UserEditPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: User,
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    public usersService : UsersService,
   ) {
     this.form = this.fb.group({
-      firstName: [''],
-      lastName: [''],
       gender: [''],
       possition: [''],
-      dateOfBirth: [''],
-      image: ['']
     });
   }
-
-  onNoClick(): void {
+  onChangeGender(event: any) {
+    this.form.get("gender")?.setValue((event.source.selected.viewValue).toLowerCase());
+  }
+  onChangePossition(event: any) {
+    this.form.get("possition")?.setValue((event.source.selected.viewValue).toLowerCase());
+  }
+  onOkClick(data:any){
+    this.usersService.update(this.data.id, data).subscribe((response: any)=>{
+    this.dialogRef.close();
+    }, (error) => {
+      console.log('error is ', error);
+    });
+  }
+  onCancelClick() {
     this.dialogRef.close();
   }
+}
 
+
+@Component({
+  selector: 'app-userDeletePopup',
+  templateUrl: './userDeletePopup.component.html',
+})
+export class UserDeletePopupComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<UserDeletePopupComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: User,
+    public usersService : UsersService,
+    private router: Router,
+  ) {}
+  onOklClick() {
+    this.usersService.delete(this.data.id).subscribe((response: any)=>{
+      if(response.status == 'fail') console.log(response.message);
+      if(response.status == 'done') this.router.navigate(['users-api/list']);
+      this.dialogRef.close();
+    }, (error) => {
+      console.log('error is ', error);
+    });
+  }
+  onCancelClick() {
+    this.dialogRef.close();
+  }
 }

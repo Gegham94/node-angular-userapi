@@ -20,7 +20,6 @@ export class RegisterComponent implements OnInit {
 
   submitForm(){
     this.registerService.sendData().subscribe((response: any)=>{
-      
       localStorage.setItem('access_token', response.token);
 
       this.appComponent.isUserLoggedIn = true;

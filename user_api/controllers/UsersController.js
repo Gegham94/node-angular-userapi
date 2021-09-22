@@ -97,11 +97,8 @@ exports.createUser = async(req, res, next) => {
 
 exports.updateUser = async(req, res) => {
   try{
-    const checked = await valid.checkUserInfo(req, res);
-    if(!checked.status) return res.json(checked)
-
     const id = req.params.id;
-    console.log(req.body);
+
     User.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
       .then(user => {
         if(!user){
@@ -128,6 +125,7 @@ exports.deleteUser = async(req, res) => {
         if(!data){
           return res.json({status: 'fail', message: 'User is not found !'});
         }else {
+          fs.unlinkSync(`public/${conf.media.directory}images/${data.image.split('/').pop()}`);
           return res.json({status: 'done', message: 'User is successfuly deleted'});
         }
       });

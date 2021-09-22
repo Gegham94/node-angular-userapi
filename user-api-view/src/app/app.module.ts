@@ -20,14 +20,15 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UsersComponent } from './components/users/users.component';
-import { UserComponent, UserPopupComponent } from './components/user/user.component';
+import { UserComponent, UserEditPopupComponent, UserDeletePopupComponent } from './components/user/user.component';
 
 
 
 
 @NgModule({
   entryComponents: [
-    UserPopupComponent
+    UserEditPopupComponent,
+    UserDeletePopupComponent,
   ],
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { UserComponent, UserPopupComponent } from './components/user/user.compon
     UsersComponent,
     LogoutComponent,
     UserComponent,
-    UserPopupComponent
+    UserEditPopupComponent,
+    UserDeletePopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +56,7 @@ import { UserComponent, UserPopupComponent } from './components/user/user.compon
     RegisterService,
     LoginService,
     UsersService,
+    UserComponent,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
