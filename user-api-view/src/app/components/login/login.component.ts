@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
 
   submitForm(){
     this.loginService.sendData().subscribe((response: any)=>{
+      if(response.status == 'fail') return console.log(response.message);
       localStorage.setItem('access_token', response.token);
 
       this.appComponent.isUserLoggedIn = true;

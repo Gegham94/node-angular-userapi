@@ -12,12 +12,11 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-label>Possition</mat-label>
+    <mat-label>{{currentPossition}}</mat-label>
     <mat-select (selectionChange)="onChangePossition($event)">
       <mat-option *ngFor="let userPossition of UserPossition" [value]="userPossition">{{userPossition}}
       </mat-option>
     </mat-select>
-    <!-- <input matInput [(ngModel)]="data.possition"> -->
   </mat-form-field>
   
   <mat-form-field>
@@ -26,7 +25,6 @@
       <mat-option *ngFor="let userGender of UserGender" [value]="userGender">{{userGender}}
       </mat-option>
     </mat-select>
-    <!-- <input matInput [(ngModel)]="data.gender"> -->
   </mat-form-field><br>
 
   <mat-form-field>

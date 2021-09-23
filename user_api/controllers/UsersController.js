@@ -12,7 +12,7 @@ exports.loginUser = async (req, res, next) => {
 
     const {email, password} = req.body;
     const user = await User.findOne({email: email});
-    if(!user || !user.checkPassword(password)) return res.json({ message: `Incorrect Email or Password !`});
+    if(!user || !user.checkPassword(password)) return res.json({ status: 'fail', message: `Incorrect Email or Password !`});
   
     const token = await createToken(user.id);
     if(!token) return res.json({message: 'Token does not created !'});

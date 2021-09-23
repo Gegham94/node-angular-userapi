@@ -3,7 +3,6 @@ const User = require('../schema/User');
 const conf = require ('../config/configuration.json');
 const { v4: uuidv4 } = require('uuid');
 
-//create function for  template
 const template = (firstName, link) => {
   return (`
     <!DOCTYPE html>

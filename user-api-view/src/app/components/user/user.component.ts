@@ -81,6 +81,7 @@ export class UserEditPopupComponent {
   UserPossition: any = ['Manager', 'Developer'];
   UserGender: any = ['Male', 'Female'];
   form: FormGroup;
+  currentPossition: any
 
   constructor(
     public dialogRef: MatDialogRef<UserEditPopupComponent>,
@@ -88,6 +89,8 @@ export class UserEditPopupComponent {
     public fb: FormBuilder,
     public usersService : UsersService,
   ) {
+    
+    this.currentPossition = data.possition
     this.form = this.fb.group({
       gender: [''],
       possition: [''],
@@ -101,6 +104,7 @@ export class UserEditPopupComponent {
   }
   onOkClick(data:any){
     this.usersService.update(this.data.id, data).subscribe((response: any)=>{
+      console.log(response.message);
     this.dialogRef.close();
     }, (error) => {
       console.log('error is ', error);
