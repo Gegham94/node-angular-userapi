@@ -20,7 +20,6 @@ export class RegisterComponent implements OnInit {
 
   submitForm(){
     this.registerService.sendData().subscribe((response: any)=>{
-      console.log(2222222, response, response.token);
       
       localStorage.setItem('access_token', response.token);
 
