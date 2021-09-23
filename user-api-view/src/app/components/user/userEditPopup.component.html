@@ -1,6 +1,7 @@
 <div mat-dialog-content style="text-align: center;">
   <h2 style="font-weight: bold">User information</h2>
   <p>Change fields that You want</p>
+
   <mat-form-field>
     <mat-label>First name</mat-label>
     <input matInput [(ngModel)]="data.firstName">
@@ -31,14 +32,9 @@
     <mat-label>Date of Birth</mat-label>
     <input matInput [(ngModel)]="data.dateOfBirth">
   </mat-form-field><br>
-
-  <mat-form-field>
-    <mat-label>Image</mat-label>
-    <ngx-mat-file-input [(ngModel)]="data.image">
-    </ngx-mat-file-input>
-  </mat-form-field>
 </div>
+
 <div mat-dialog-actions>
-  <button mat-button style="outline:none;" (click)="onCancelClick()">Cancel</button>
-  <button mat-button style="outline:none;" class="btn btn-success" (click)="onOkClick(data)" cdkFocusInitial>Ok</button>
+  <button mat-button style="outline:none" (click)="onCancelClick()">Cancel</button>
+  <button mat-button style="outline:none" class="btn btn-success" (click)="onOkClick(data)" cdkFocusInitial>Ok</button>
 </div>

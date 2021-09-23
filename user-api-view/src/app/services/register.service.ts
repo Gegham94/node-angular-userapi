@@ -47,7 +47,7 @@ export class RegisterService {
     this.formData.append("possition", this.form.get('possition')?.value);
     this.formData.append("dateOfBirth", this.form.get('dateOfBirth')?.value);
     this.formData.append("image", this.form.get('image')?.value);
-    
+    console.log('sax lave')
     return this.http.post(`${this.API_URL}/create`, this.formData, this.httpOptions);
   }
 }

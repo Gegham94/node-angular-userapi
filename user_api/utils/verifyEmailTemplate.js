@@ -4,18 +4,15 @@ const conf = require ('../config/configuration.json');
 const { v4: uuidv4 } = require('uuid');
 
 const template = (firstName, link) => {
-  return (`
-    <!DOCTYPE html>
+  return (
+    `<!DOCTYPE html>
     <html>
-
     <head>
       <title></title>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <style type="text/css">
-
-        /* RESET STYLES */
         img {
           border: 0;
           height: auto;
@@ -23,19 +20,15 @@ const template = (firstName, link) => {
           outline: none;
           text-decoration: none;
         }
-
         table {
           border-collapse: collapse !important;
         }
-
         body {
           height: 100% !important;
           margin: 0 !important;
           padding: 0 !important;
           width: 100% !important;
         }
-
-        /* iOS BLUE LINKS */
         a[x-apple-data-detectors] {
           color: inherit !important;
           text-decoration: none !important;
@@ -44,16 +37,12 @@ const template = (firstName, link) => {
           font-weight: inherit !important;
           line-height: inherit !important;
         }
-
-        /* MOBILE STYLES */
         @media screen and (max-width:600px) {
           h1 {
             font-size: 32px !important;
             line-height: 32px !important;
           }
         }
-
-        /* ANDROID CENTER FIX */
         div[style*="margin: 16px 0;"] {
           margin: 0 !important;
         }
@@ -61,9 +50,7 @@ const template = (firstName, link) => {
     </head>
 
     <body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
-      <!-- HIDDEN PREHEADER TEXT -->
       <table border="0" cellpadding="0" cellspacing="0" width="100%">
-          <!-- LOGO -->
           <tr>
             <td bgcolor="#FFA73B" align="center">
               <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
@@ -110,26 +97,19 @@ const template = (firstName, link) => {
           </tr>
       </table>
     </body>
-
-    </html>
-  `)
+    </html>`
+  );
 };
 
-//create propertes for generate link
 let random, host, link;
 
 exports.sendEmail = async (req, res, next, email, firstName) => {
   try{
-
-    //creating transport from SMTPserver
     const  transporter = nodemailer.createTransport(conf.smtpServer);
-
-    //get user data
-    random = `Sec-${uuidv4()}-Code`;
+    random = uuidv4();
     host = req.get('host');
     link = `http://${host}/users-api/email/verify?id=${random}_${email}`;
 
-    //create mail options
     const mailOptions = {
       from: conf.smtpServer.from,
       to: email,
@@ -137,18 +117,14 @@ exports.sendEmail = async (req, res, next, email, firstName) => {
       html: template( firstName, link )
     };
 
-    //send email verification
     const sendDone = await transporter.sendMail(mailOptions);
-
-    //if verification message is not sended - return error
     if(!sendDone){
-      return res.json({staus: false });
+      transporter.close();
+      return res.json({staus: false , message: "Email is not sended"});
     }
 
-    //close opened transport 
     transporter.close();
-    
-    return res.json({status: true});
+    return next();
 
   } catch (err){
     return next(err);
@@ -157,21 +133,14 @@ exports.sendEmail = async (req, res, next, email, firstName) => {
 
 exports.verifyEmail = async(req, res, next) => {
   try{
-
-    //chechking protocols are equals or not
     if(`${req.protocol}://${req.get('host')}` === `http://${host}`){
       if(req.query.id.split('_')[0] === random){
 
-        //get user email from request
         const email = req.query.id.split('_')[1];
-      
-        //find user by email
         const user = await User.updateOne({email}, {$set: {IsEmailVerify: true }});
-        
-        //if user is not exist - return error
         if(!user) return res.json({status: false, message: 'You are not registration with this email'});
-        
-        return res.json({status: true, message: 'Your email is successfuly verifyed'});
+        return res.json('Your email is successfuly verifyed');
+
       } else {
         return res.json({status: false, message: 'Your email is not verifyed'});
       }

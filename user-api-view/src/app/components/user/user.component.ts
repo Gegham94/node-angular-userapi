@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from "@angular/forms";
 
 import { User } from '../../_models/user'
@@ -88,7 +88,7 @@ export class UserEditPopupComponent {
     public fb: FormBuilder,
     public usersService : UsersService,
   ) {
-    
+
     this.form = this.fb.group({
       gender: [''],
       possition: [''],
@@ -101,8 +101,8 @@ export class UserEditPopupComponent {
     this.form.get("possition")?.setValue((event.source.selected.viewValue).toLowerCase());
   }
   onOkClick(data:any){
-    this.usersService.update(this.data.id, data).subscribe((response: any)=>{
-      console.log(response.message);
+    this.usersService.update(data.id, data).subscribe((response: any)=>{
+      console.log(response);
     this.dialogRef.close();
     }, (error) => {
       console.log('error is ', error);

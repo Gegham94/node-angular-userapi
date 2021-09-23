@@ -17,7 +17,8 @@ export class UsersService {
     this.token = localStorage.getItem('access_token');
     this.httpOptions = {
       headers: new HttpHeaders({
-        'x-authorization': `${this.token}`
+        'x-authorization': `${this.token}`,
+        'content-type': 'application/json'
       })
     }
   }
@@ -28,7 +29,7 @@ export class UsersService {
   getById(id: string) {
     return this.http.get(`${this.API_URL}/` + id, this.httpOptions);
   }
-  update(id: string, user: User) {
+  update(id: string, user: FormData) {
     return this.http.put(`${this.API_URL}/update/` + id, user, this.httpOptions);
   }
   delete(id: string) {

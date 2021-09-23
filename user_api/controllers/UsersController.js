@@ -81,8 +81,7 @@ exports.createUser = async(req, res, next) => {
         const token = await createToken(savedUser.id);
         if(!token) return res.json({message: 'Token does not created !'});
 
-        // const emailSender = await verifyEmailTemplate.sendEmail(req, res, next, email, firstName);
-        // if(!emailSender.status) return res.json({message: "Email is not sended"});
+        // await verifyEmailTemplate.sendEmail(req, res, next, email, firstName);
 
         return res.json({token});
         

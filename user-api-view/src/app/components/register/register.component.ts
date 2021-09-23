@@ -14,12 +14,14 @@ export class RegisterComponent implements OnInit {
   UserPossition: any = ['Manager', 'Developer'];
   UserGender: any = ['Male', 'Female'];
 
-  constructor(private appComponent: AppComponent,public registerService : RegisterService, private router: Router) {}
+  constructor(private appComponent: AppComponent, public registerService : RegisterService, private router: Router) {}
 
   ngOnInit(): void {}
 
   submitForm(){
     this.registerService.sendData().subscribe((response: any)=>{
+      console.log(2222222, response, response.token);
+      
       localStorage.setItem('access_token', response.token);
 
       this.appComponent.isUserLoggedIn = true;
