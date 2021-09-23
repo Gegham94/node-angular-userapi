@@ -49,7 +49,7 @@ export class UserComponent implements OnInit {
 
   openEditPopup(): void {
     this.dialog.open(UserEditPopupComponent, {
-      width: '250px',
+      width: '225px',
       data: {
         id: this.id,
         firstName : this.firstName,
@@ -63,7 +63,7 @@ export class UserComponent implements OnInit {
   }
   openDeletePopup(){
     this.dialog.open(UserDeletePopupComponent, {
-      width: '200px',
+      width: '210px',
       data: {
         id: this.id,
       }
@@ -81,7 +81,6 @@ export class UserEditPopupComponent {
   UserPossition: any = ['Manager', 'Developer'];
   UserGender: any = ['Male', 'Female'];
   form: FormGroup;
-  currentPossition: any
 
   constructor(
     public dialogRef: MatDialogRef<UserEditPopupComponent>,
@@ -90,7 +89,6 @@ export class UserEditPopupComponent {
     public usersService : UsersService,
   ) {
     
-    this.currentPossition = data.possition
     this.form = this.fb.group({
       gender: [''],
       possition: [''],
@@ -128,7 +126,7 @@ export class UserDeletePopupComponent {
     public usersService : UsersService,
     private router: Router,
   ) {}
-  onOklClick() {
+  onDeletelClick() {
     this.usersService.delete(this.data.id).subscribe((response: any)=>{
       if(response.status == 'fail') console.log(response.message);
       if(response.status == 'done') this.router.navigate(['users-api/list']);

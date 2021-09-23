@@ -1,5 +1,5 @@
 <div mat-dialog-content style="text-align: center;">
-  <p style="font-weight: bold">User information</p>
+  <h2 style="font-weight: bold">User information</h2>
   <p>Change fields that You want</p>
   <mat-form-field>
     <mat-label>First name</mat-label>
@@ -12,7 +12,7 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-label>{{currentPossition}}</mat-label>
+    <mat-label>Possition</mat-label>
     <mat-select (selectionChange)="onChangePossition($event)">
       <mat-option *ngFor="let userPossition of UserPossition" [value]="userPossition">{{userPossition}}
       </mat-option>
@@ -39,6 +39,6 @@
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onCancelClick()">Cancel</button>
-  <button mat-button (click)="onOkClick(data)" cdkFocusInitial>Ok</button>
+  <button mat-button style="outline:none;" (click)="onCancelClick()">Cancel</button>
+  <button mat-button style="outline:none;" class="btn btn-success" (click)="onOkClick(data)" cdkFocusInitial>Ok</button>
 </div>
