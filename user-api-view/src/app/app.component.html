@@ -1,6 +1,9 @@
 <mat-toolbar color="primary" class="app-header">
-  <div>
-    <a href="/" class="positronx">{{title}}</a>
+  <div *ngIf=!isUserLoggedIn>
+    <a routerLink="/" class="positronx">{{title}}</a>
+  </div>
+  <div *ngIf=isUserLoggedIn>
+    <a routerLink="users-api/list" class="positronx">{{title}}</a>
   </div>
   <span class="nav-tool-items" *ngIf=!isUserLoggedIn>
     <a mat-button routerLink="users-api/login" routerLinkActive="active">Login</a>

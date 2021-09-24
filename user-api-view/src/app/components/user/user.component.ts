@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 
 import { User } from '../../_models/user'
 import { UsersService } from '../../services/users.service';
-// import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-user',
@@ -23,20 +22,13 @@ export class UserComponent implements OnInit {
   dateOfBirth: any;
   image: any;
 
-  // access_token: any;
-  // email_status: any;
-
   constructor(
     private activateRouter: ActivatedRoute, 
     public usersService : UsersService, 
     public dialog: MatDialog,
-    // private loginComponent: LoginComponent
   ) { }
 
   ngOnInit(): void {
-    // this.access_token = this.loginComponent.access_token;
-    // this.email_status = this.loginComponent.email_status;
-
     this.activateRouter.params.subscribe(params => {
       this.usersService.getById(params.id).subscribe((response: any)=>{
 

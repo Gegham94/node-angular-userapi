@@ -16,7 +16,6 @@ const routes: Routes = [
   { path: 'users-api/create', component: RegisterComponent },
   { path: 'users-api/list', canActivate: [AuthGuard], component: UsersComponent },
   { path: 'users-api/:id', canActivate: [AuthGuard], component: UserComponent },
-  
 ];
 
 @NgModule({
