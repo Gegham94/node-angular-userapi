@@ -17,7 +17,7 @@ exports.loginUser = async (req, res, next) => {
     const token = await createToken(user.id);
     if(!token) return res.json({message: 'Token does not created !'});
 
-    return res.json({ message: 'Logged in successfully done 👌', token });
+    return res.json({ user_key: user.id, email_status: user.IsEmailVerify, status: 'done', token});
     
   } catch (error) {
     return next(error);
@@ -54,13 +54,16 @@ exports.createUser = async(req, res, next) => {
     
     const { email, firstName, lastName, possition, gender, dateOfBirth, password } = req.body;
     
-    const user = await User.findOne({email: email})
+    const user = await User.findOne({email: email});
     if(user) return res.status(409).send({message: `User with email ${email} already exist`});
     
     const match = ["image/png", "image/jpeg", "image/jpg"];
     if(match.indexOf(req.file.mimetype) === -1){
       return res.json({status: 'Fail', message: 'Incorrect image type'});
     } 
+    
+    const mailSender = await verifyEmailTemplate.sendEmail(req, res, next);
+    if(!mailSender) return res.json({staus: false , message: "Email is not sended"});
     
     const newImageUniqueName = uuidv4();
     fs.writeFileSync(`public/${conf.media.directory}images/${newImageUniqueName}${path.extname(req.file.originalname)}`, req.file.buffer);
@@ -75,13 +78,11 @@ exports.createUser = async(req, res, next) => {
       password,
       image: `http://localhost:3000/${conf.media.directory}images/${newImageUniqueName}${path.extname(req.file.originalname)}`
     });
-  
+
     await newUser.save()
       .then(async savedUser => {
         const token = await createToken(savedUser.id);
         if(!token) return res.json({message: 'Token does not created !'});
-
-        // await verifyEmailTemplate.sendEmail(req, res, next, email, firstName);
 
         return res.json({token});
         

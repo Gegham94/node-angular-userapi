@@ -103,28 +103,28 @@ const template = (firstName, link) => {
 
 let random, host, link;
 
-exports.sendEmail = async (req, res, next, email, firstName) => {
+exports.sendEmail = async (req, res, next) => {
   try{
     const  transporter = nodemailer.createTransport(conf.smtpServer);
     random = uuidv4();
     host = req.get('host');
-    link = `http://${host}/users-api/email/verify?id=${random}_${email}`;
+    link = `http://${host}/users-api/email/verify?id=${random}_${req.body.email}`;
 
     const mailOptions = {
       from: conf.smtpServer.from,
-      to: email,
+      to: req.body.email,
       subject: 'Confirm Your Email',
-      html: template( firstName, link )
+      html: template( req.body.firstName, link )
     };
 
     const sendDone = await transporter.sendMail(mailOptions);
-    if(!sendDone){
+    if(!sendDone) {
       transporter.close();
-      return res.json({staus: false , message: "Email is not sended"});
+      return false;
     }
-
+    
     transporter.close();
-    return next();
+    return true;
 
   } catch (err){
     return next(err);
@@ -138,7 +138,7 @@ exports.verifyEmail = async(req, res, next) => {
 
         const email = req.query.id.split('_')[1];
         const user = await User.updateOne({email}, {$set: {IsEmailVerify: true }});
-        if(!user) return res.json({status: false, message: 'You are not registration with this email'});
+        if(!user) return res.json({status: false, message: 'You are not registered with this email'});
         return res.json('Your email is successfuly verifyed');
 
       } else {

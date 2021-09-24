@@ -14,16 +14,16 @@
 
   <mat-form-field>
     <mat-label>Possition</mat-label>
-    <mat-select (selectionChange)="onChangePossition($event)">
-      <mat-option *ngFor="let userPossition of UserPossition" [value]="userPossition">{{userPossition}}
+    <mat-select (selectionChange)="onChangePossition($event)" [(ngModel)]="data.possition">
+      <mat-option *ngFor="let userPossition of UserPossition" [value]="userPossition.toLowerCase()">{{userPossition}}
       </mat-option>
     </mat-select>
   </mat-form-field>
   
   <mat-form-field>
     <mat-label>Gender</mat-label>
-    <mat-select (selectionChange)="onChangeGender($event)">
-      <mat-option *ngFor="let userGender of UserGender" [value]="userGender">{{userGender}}
+    <mat-select (selectionChange)="onChangeGender($event)" [(ngModel)]="data.gender">
+      <mat-option *ngFor="let userGender of UserGender" [value]="userGender.toLowerCase()">{{userGender}}
       </mat-option>
     </mat-select>
   </mat-form-field><br>

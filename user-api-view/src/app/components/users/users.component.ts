@@ -12,8 +12,6 @@ import { User } from '../../_models/user';
 })
 export class UsersComponent implements OnInit {
 
-  // @ViewChild(MatPaginator) paginator!: MatPaginator;
-  
   resData: User[] = [];
   displayedColumns: string[] = ['image', 'firstName', 'lastName', 'possition', 'gender', 'dateOfBirth'];
   dataSource!: MatTableDataSource<User>;
