@@ -6,9 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  
   isUserLoggedIn!: boolean;
   title!: string;
-  
+
   constructor(){
     if(localStorage.getItem('access_token')){
       this.isUserLoggedIn = true;

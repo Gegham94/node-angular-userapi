@@ -84,7 +84,7 @@ exports.createUser = async(req, res, next) => {
         const token = await createToken(savedUser.id);
         if(!token) return res.json({message: 'Token does not created !'});
 
-        return res.json({token});
+        return res.json({status: 'done', token});
         
       }).catch(err => {
         return res.status(201).send({ message: 'User is not saved !', status: err });

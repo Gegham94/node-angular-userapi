@@ -11,9 +11,16 @@ import { LoginService } from '../../services/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private appComponent: AppComponent, public loginService : LoginService, private router: Router) { }
+  constructor(
+    private appComponent: AppComponent, 
+    public loginService : LoginService, 
+    private router: Router,
+    ) 
+    { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if(this.appComponent.isUserLoggedIn) this.router.navigate(['users-api/list']);
+  }
 
   submitForm(){
     this.loginService.sendData().subscribe((response: any)=>{

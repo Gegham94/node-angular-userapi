@@ -4,7 +4,7 @@
     "directory": "files/"
   },
   "jwt": {
-    "secretKey": "fg1C0-Sec77coPltuYdeAc99"
+    "secretKey": "fg1C0-Sec77coPltuYdeAc99-key11axW0TTc22"
   },
   "smtpServer": {
     "host": "smtp.yandex.ru",
