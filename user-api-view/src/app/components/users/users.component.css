@@ -6,7 +6,6 @@
   font-size: 16px;
   font-weight: bolder;
   color: black;
-  font-style: italic;
 }
 .userImage{
   width: 100%;
@@ -53,7 +52,7 @@
 .mat-row:hover .mat-cell {
   background-color:rgba(128, 128, 128, 0.623);
   opacity: 1;
-  color: black;
+  color: rgba(15, 15, 15, 0.877);
   cursor: pointer;
   font-size: 15px;
   font-weight: bold;

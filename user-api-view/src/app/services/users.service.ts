@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { User } from '../_models/user';
 import { environment } from 'src/environments/environment';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,9 @@ export class UsersService {
   API_URL = environment.API_URL;
   httpOptions : any;
   token;
+  form!: FormGroup;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, public fb: FormBuilder) { 
     this.token = localStorage.getItem('access_token');
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -21,18 +22,29 @@ export class UsersService {
         'content-type': 'application/json'
       })
     }
+    this.form = this.fb.group({
+      email: [''],
+      firstName: ['']
+    });
   }
 
   getAll() {
     return this.http.get(`${this.API_URL}/list`, this.httpOptions);
   }
-  getById(id: string) {
+  getById(id: any) {
     return this.http.get(`${this.API_URL}/` + id, this.httpOptions);
   }
-  update(id: string, user: FormData) {
+  update(id: any, user: FormData) {
     return this.http.put(`${this.API_URL}/update/` + id, user, this.httpOptions);
   }
-  delete(id: string) {
+  delete(id: any) {
     return this.http.delete(`${this.API_URL}/delete/` + id, this.httpOptions);
+  }
+  sendEmailVerifyMessage(email:any,firstName:any) {
+    console.log(email,firstName)
+    return this.http.post(`${this.API_URL}/email/send/verify`, {
+      email,
+      firstName
+    });
   }
 }

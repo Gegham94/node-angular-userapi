@@ -13,11 +13,11 @@ exports.loginUser = async (req, res, next) => {
     const {email, password} = req.body;
     const user = await User.findOne({email: email});
     if(!user || !user.checkPassword(password)) return res.json({ status: 'fail', message: `Incorrect Email or Password !`});
-  
+
     const token = await createToken(user.id);
     if(!token) return res.json({message: 'Token does not created !'});
 
-    return res.json({ user_key: user.id, status: 'done', token});
+    return res.json({ email_status: user.isEmailVerify, status: 'done', token});
     
   } catch (error) {
     return next(error);
@@ -84,7 +84,7 @@ exports.createUser = async(req, res, next) => {
         const token = await createToken(savedUser.id);
         if(!token) return res.json({message: 'Token does not created !'});
 
-        return res.json({status: 'done', token});
+        return res.json({status: 'done', token, email_status: savedUser.isEmailVerify});
         
       }).catch(err => {
         return res.status(201).send({ message: 'User is not saved !', status: err });

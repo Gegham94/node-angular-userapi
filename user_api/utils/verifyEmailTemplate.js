@@ -137,7 +137,7 @@ exports.verifyEmail = async(req, res, next) => {
       if(req.query.id.split('_')[0] === random){
 
         const email = req.query.id.split('_')[1];
-        const user = await User.updateOne({email}, {$set: {IsEmailVerify: true }});
+        const user = await User.updateOne({email}, {$set: {isEmailVerify: true }});
         if(!user) return res.json({status: false, message: 'You are not registered with this email'});
         return res.json('Your email is successfuly verifyed');
 

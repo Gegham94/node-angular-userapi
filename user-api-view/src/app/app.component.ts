@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(){
     if(localStorage.getItem('access_token')){
       this.isUserLoggedIn = true;
-      this.title = 'Users list';
+      this.title = 'Welcome';
     }else{
       this.isUserLoggedIn = false;
       this.title = 'User APP';

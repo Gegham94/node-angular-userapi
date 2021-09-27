@@ -1,6 +1,6 @@
 <mat-toolbar color="primary" class="app-header">
   <div *ngIf=!isUserLoggedIn>
-    <a routerLink="/" class="positronx">{{title}}</a>
+    <a routerLink="users-api/login" class="positronx">{{title}}</a>
   </div>
   <div *ngIf=isUserLoggedIn>
     <a routerLink="users-api/list" class="positronx">{{title}}</a>

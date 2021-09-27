@@ -20,6 +20,7 @@ export class UserComponent implements OnInit {
   gender: any;
   possition: any;
   dateOfBirth: any;
+  isEmailVerify: any;
   image: any;
 
   constructor(
@@ -31,7 +32,6 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     this.activateRouter.params.subscribe(params => {
       this.usersService.getById(params.id).subscribe((response: any)=>{
-
         this.id = response.user._id
         this.email = response.user.email;
         this.firstName = response.user.firstName;
@@ -39,16 +39,24 @@ export class UserComponent implements OnInit {
         this.possition = response.user.possition;
         this.gender = response.user.gender;
         this.dateOfBirth = response.user.dateOfBirth;
+        this.isEmailVerify = response.user.isEmailVerify;
         this.image = response.user.image;
-        
       }, (error) => {
         console.log('error is ', error);
       });
     });
   }
 
+  sendVerifyMessage(){
+    this.usersService.sendEmailVerifyMessage(this.email, this.firstName).subscribe((response: any)=>{
+      console.log(response)
+    }, (error) => {
+      console.log('error is ', error);
+    });
+    
+  }
   openEditPopup(): void {
-    if(localStorage.getItem('access_token')=='true'){
+    if(localStorage.getItem('email_status')=='true'){
       this.dialog.open(UserEditPopupComponent, {
         width: '225px',
         data: {
@@ -68,7 +76,7 @@ export class UserComponent implements OnInit {
     }
   }
   openDeletePopup(){
-    if(localStorage.getItem('access_token')=='true'){
+    if(localStorage.getItem('email_status')=='true'){
       this.dialog.open(UserDeletePopupComponent, {
         width: '210px',
         data: {
@@ -125,7 +133,7 @@ export class UserEditPopupComponent {
   onChangePossition(event: any) {
     this.form.get("possition")?.setValue((event.source.selected.viewValue).toLowerCase());
   }
-  onOkClick(data:any){
+  onEditClick(data:any){
     this.usersService.update(data.id, data).subscribe((response: any)=>{
     this.dialogRef.close();
     }, (error) => {

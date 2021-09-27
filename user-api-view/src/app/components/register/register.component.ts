@@ -25,9 +25,10 @@ export class RegisterComponent implements OnInit {
       if(response.status == 'fail') return console.log(response.message);
       
       localStorage.setItem('access_token', response.token);
+      localStorage.setItem('email_status', response.email_status)
 
       this.appComponent.isUserLoggedIn = true;
-      this.appComponent.title = 'Users list';
+      this.appComponent.title = 'Welcome';
       
       this.router.navigate(['users-api/list']);
       this.registerService.form.reset();

@@ -35,7 +35,7 @@ const userSchema = new Schema({
   image: {
     type: String,
   },
-  IsEmailVerify: {
+  isEmailVerify: {
     type: Boolean,
     default: false
   },
