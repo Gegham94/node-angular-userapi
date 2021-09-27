@@ -47,14 +47,18 @@ export class UserComponent implements OnInit {
     });
   }
 
-  sendVerifyMessage(){
+  openVerifyMessagePopup(){
     this.usersService.sendEmailVerifyMessage(this.email, this.firstName).subscribe((response: any)=>{
-      console.log(response)
+      if(response.status == 'done'){
+        this.dialog.open(UserEmailVerifyMessageSendPopupComponent,{
+          width: '250px'
+        })
+      }
     }, (error) => {
       console.log('error is ', error);
     });
-    
   }
+
   openEditPopup(): void {
     if(localStorage.getItem('email_status')=='true'){
       this.dialog.open(UserEditPopupComponent, {
@@ -88,6 +92,19 @@ export class UserComponent implements OnInit {
         width: '250px'
       });
     }
+  }
+}
+
+@Component({
+  selector: 'app-userEmailVerifyMessageSendPopupComponent',
+  templateUrl: './userEmailVerifyMessageSendPopup.component.html',
+})
+export class UserEmailVerifyMessageSendPopupComponent {
+  constructor(
+    public dialogRef: MatDialogRef<UserEmailVerifyMessageSendPopupComponent>,
+  ) {}
+  onCloseClick() {
+    this.dialogRef.close();
   }
 }
 

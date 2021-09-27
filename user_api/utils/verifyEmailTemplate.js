@@ -124,7 +124,7 @@ exports.sendEmail = async (req, res, next) => {
     }
     
     transporter.close();
-    return true;
+    return res.json({status: 'done', message: 'Email is sended'});
 
   } catch (err){
     return next(err);
