@@ -19,9 +19,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     ) { }
 
-  ngOnInit(): void {
-    if(this.appComponent.isUserLoggedIn) this.router.navigate(['users-api/profile', this.userId]);
-  }
+  ngOnInit(): void {}
 
   submitForm(){
     this.loginService.sendData().subscribe((response: any)=>{

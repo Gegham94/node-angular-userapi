@@ -5,13 +5,20 @@ import { Router, CanActivate, UrlTree } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router ) { }
+
+  accessToken:any;
+
+  constructor(private router: Router ) 
+  {
+    this.accessToken = localStorage.getItem('access_token');
+   }
 
   canActivate(): Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (localStorage.getItem('access_token')) {
+    if (this.accessToken!=undefined && this.accessToken!=null) {
       return true;
     }
     localStorage.removeItem('access_token');
+    localStorage.removeItem('email_status');
     this.router.navigate(['users-api/login']);
     return false;
   }

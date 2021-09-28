@@ -57,6 +57,8 @@ import { UserDeletePopupComponent } from './components/userDeletePopup/userDelet
     UsersService,
     UserComponent,
     UserProfileComponent,
+    LoginComponent,
+    AppComponent,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy

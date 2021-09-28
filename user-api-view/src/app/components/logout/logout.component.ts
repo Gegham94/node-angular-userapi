@@ -23,4 +23,5 @@ export class LogoutComponent implements OnInit {
     this.appComponent.title = this.title;
     this.router.navigate(['users-api/login']);
   }
+  
 }
