@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from '../_guard/auth.guard';
+import { LoginGuard } from '../_guard/login.guard';
 
 import { LoginComponent } from '../components/login/login.component';
 import { LogoutComponent } from '../components/logout/logout.component';
 import { RegisterComponent } from '../components/register/register.component';
 import { UsersComponent } from '../components/users/users.component';
 import { UserComponent } from '../components/user/user.component';
-import { LoginGuard } from '../_guard/login.guard';
 import { UserProfileComponent } from '../components/userProfile/userProfile.component';
 
 const routes: Routes = [

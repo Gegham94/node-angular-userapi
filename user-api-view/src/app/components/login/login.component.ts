@@ -11,20 +11,22 @@ import { LoginService } from '../../services/login.service';
 })
 export class LoginComponent implements OnInit {
 
+  userId: any;
+
   constructor(
     private appComponent: AppComponent, 
     public loginService : LoginService, 
     private router: Router,
-    ) 
-    { }
+    ) { }
 
   ngOnInit(): void {
-    if(this.appComponent.isUserLoggedIn) this.router.navigate(['users-api/list']);
+    if(this.appComponent.isUserLoggedIn) this.router.navigate(['users-api/profile', this.userId]);
   }
 
   submitForm(){
     this.loginService.sendData().subscribe((response: any)=>{
       if(response.status == 'fail') return console.log(response.message);
+      this.userId = response.userId
 
       localStorage.setItem('access_token', response.token);
       localStorage.setItem('email_status', response.email_status)
@@ -32,7 +34,7 @@ export class LoginComponent implements OnInit {
       this.appComponent.isUserLoggedIn = true;
       this.appComponent.title = 'Welcome';
       
-      this.router.navigate(['users-api/profile', response.userId]);
+      this.router.navigate(['users-api/profile', this.userId]);
       this.loginService.form.reset();
 
     }, (error) => {
