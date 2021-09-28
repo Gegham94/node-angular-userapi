@@ -10,11 +10,11 @@ import { UserEmailVerifyMessageSendPopupComponent } from '../userEmailVerifyMess
 import { UsersService } from '../../services/users.service';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  selector: 'app-userProfile',
+  templateUrl: './userProfile.component.html',
+  styleUrls: ['./userProfile.component.css']
 })
-export class UserComponent implements OnInit {
+export class UserProfileComponent implements OnInit {
 
   id: any;
   email: any;

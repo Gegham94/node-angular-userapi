@@ -11,9 +11,9 @@ export class UsersService {
 
   API_URL = environment.API_URL;
   httpOptions : any;
-  token;
   form!: FormGroup;
-
+  token;
+  
   constructor(private http: HttpClient, public fb: FormBuilder) { 
     this.token = localStorage.getItem('access_token');
     this.httpOptions = {
@@ -34,6 +34,9 @@ export class UsersService {
   getById(id: any) {
     return this.http.get(`${this.API_URL}/` + id, this.httpOptions);
   }
+  getProfileById(id: any) {
+    return this.http.get(`${this.API_URL}/profile` + id, this.httpOptions);
+  }
   update(id: any, user: FormData) {
     return this.http.put(`${this.API_URL}/update/` + id, user, this.httpOptions);
   }
@@ -41,10 +44,10 @@ export class UsersService {
     return this.http.delete(`${this.API_URL}/delete/` + id, this.httpOptions);
   }
   sendEmailVerifyMessage(email:any,firstName:any) {
-    console.log(email,firstName)
     return this.http.post(`${this.API_URL}/email/send/verify`, {
       email,
       firstName
     });
   }
+
 }

@@ -15,21 +15,18 @@ import { LoginService} from './services/login.service';
 import { UsersService} from './services/users.service';
 
 import { AppRoutingModule } from './routes/app-routing.module';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { RegisterComponent } from './components/register/register.component';
+import { UserComponent } from './components/user/user.component';
 import { UsersComponent } from './components/users/users.component';
-import { UserComponent, UserEditPopupComponent, UserDeletePopupComponent } from './components/user/user.component';
-
-
-
+import { UserProfileComponent } from './components/userProfile/userProfile.component';
+import { UserEditPopupComponent } from './components/userEditPopup/userEditPopup.component';
+import { UserDeletePopupComponent } from './components/userDeletePopup/userDeletePopup.component';
 
 @NgModule({
-  entryComponents: [
-    UserEditPopupComponent,
-    UserDeletePopupComponent,
-  ],
   declarations: [
     AppComponent,
     LoginComponent,
@@ -37,8 +34,10 @@ import { UserComponent, UserEditPopupComponent, UserDeletePopupComponent } from 
     UsersComponent,
     LogoutComponent,
     UserComponent,
+    UserProfileComponent,
+    UserProfileComponent,
     UserEditPopupComponent,
-    UserDeletePopupComponent,
+    UserDeletePopupComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +56,7 @@ import { UserComponent, UserEditPopupComponent, UserDeletePopupComponent } from 
     LoginService,
     UsersService,
     UserComponent,
+    UserProfileComponent,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy

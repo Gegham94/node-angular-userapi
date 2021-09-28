@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       this.appComponent.isUserLoggedIn = true;
       this.appComponent.title = 'Welcome';
       
-      this.router.navigate(['users-api/list']);
+      this.router.navigate(['users-api/profile', response.userId]);
       this.loginService.form.reset();
 
     }, (error) => {

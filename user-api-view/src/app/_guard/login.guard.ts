@@ -13,7 +13,6 @@ export class LoginGuard implements CanActivate {
       return false;
     }else{
       localStorage.removeItem('access_token');
-      // this.router.navigate(['users-api/login']);
       return true;
     }
   }

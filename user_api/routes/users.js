@@ -9,6 +9,7 @@ const upload = multer({storage : multer.memoryStorage()});
 
 router.get('/list', authUser, user.getAllUsers);
 router.get('/:id', authUser, user.getUserById);
+router.get('/profile/:id', authUser, user.getUserById);
 router.put('/update/:id', authUser, user.updateUser);
 router.delete('/delete/:id', authUser, user.deleteUser);
 
