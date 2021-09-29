@@ -35,6 +35,7 @@ export class UserComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log('xxxxxxx')
     this.activateRouter.params.subscribe(params => {
       this.usersService.getById(params.id).subscribe((response: any)=>{
         this.id = response.user._id

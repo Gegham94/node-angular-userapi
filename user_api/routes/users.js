@@ -13,7 +13,7 @@ router.put('/update/:id', authUser, user.updateUser);
 router.delete('/delete/:id', authUser, user.deleteUser);
 
 router.post('/login', user.loginUser);
-router.post('/create', upload.single("image"), user.createUser);
+router.post('/register', upload.single("image"), user.createUser);
 
 router.post('/email/send/verify', verifyEmailTemplate.sendEmail);
 router.get('/email/verify', verifyEmailTemplate.verifyEmail);

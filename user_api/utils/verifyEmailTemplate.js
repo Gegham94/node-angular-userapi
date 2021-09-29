@@ -29,6 +29,12 @@ const template = (firstName, link) => {
           padding: 0 !important;
           width: 100% !important;
         }
+        .confirmButton{
+          border-radius: 5px;
+        }
+        .confirmButton:hover{
+          background-color: gray;
+        }
         a[x-apple-data-detectors] {
           color: inherit !important;
           text-decoration: none !important;
@@ -82,7 +88,7 @@ const template = (firstName, link) => {
                                 <table border="0" cellspacing="0" cellpadding="0">
                                   <tr>
                                   <br><br>
-                                    <td align="center" style="border-radius: 3px;" bgcolor="#FFA73B"><a href="${link}" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #FFA73B; display: inline-block;">Confirm your Email</a></td>
+                                    <td class="confirmButton" align="center" bgcolor="#FFA73B"><a href="${link}" target="_blank" style="font-size: 20px; color: #ffffff; text-decoration: none; padding: 15px 25px">Confirm your Email</a></td>
                                   </tr>
                                 </table>
                               </td>
@@ -148,7 +154,6 @@ exports.verifyEmail = async(req, res, next) => {
     } else {
       return res.json({status: false, message: 'Please check the link is corrent or not'});
     }
-
   } catch (err) {
     return next(err);
   }
