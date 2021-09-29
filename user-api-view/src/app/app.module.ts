@@ -22,7 +22,6 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UserComponent } from './components/user/user.component';
 import { UsersComponent } from './components/users/users.component';
-import { UserProfileComponent } from './components/userProfile/userProfile.component';
 import { UserEditPopupComponent } from './components/userEditPopup/userEditPopup.component';
 import { UserDeletePopupComponent } from './components/userDeletePopup/userDeletePopup.component';
 
@@ -34,8 +33,6 @@ import { UserDeletePopupComponent } from './components/userDeletePopup/userDelet
     UsersComponent,
     LogoutComponent,
     UserComponent,
-    UserProfileComponent,
-    UserProfileComponent,
     UserEditPopupComponent,
     UserDeletePopupComponent
   ],
@@ -56,7 +53,6 @@ import { UserDeletePopupComponent } from './components/userDeletePopup/userDelet
     LoginService,
     UsersService,
     UserComponent,
-    UserProfileComponent,
     LoginComponent,
     AppComponent,
     {

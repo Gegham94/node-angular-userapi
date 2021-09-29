@@ -11,8 +11,6 @@ import { LoginService } from '../../services/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  userId: any;
-
   constructor(
     private appComponent: AppComponent, 
     public loginService : LoginService, 
@@ -24,7 +22,6 @@ export class LoginComponent implements OnInit {
   submitForm(){
     this.loginService.sendData().subscribe((response: any)=>{
       if(response.status == 'fail') return console.log(response.message);
-      this.userId = response.userId
 
       localStorage.setItem('access_token', response.token);
       localStorage.setItem('email_status', response.email_status)
@@ -32,7 +29,7 @@ export class LoginComponent implements OnInit {
       this.appComponent.isUserLoggedIn = true;
       this.appComponent.title = 'Welcome';
       
-      this.router.navigate(['users-api/profile', this.userId]);
+      this.router.navigate(['users-api/list']);
       this.loginService.form.reset();
 
     }, (error) => {

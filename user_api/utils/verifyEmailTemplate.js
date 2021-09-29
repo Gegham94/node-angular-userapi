@@ -124,8 +124,9 @@ exports.sendEmail = async (req, res, next) => {
     }
     
     transporter.close();
-    return true;
-
+    if(!req.body.verifyAfterCreate) return true;
+    return res.json({status: 'done'});
+    
   } catch (err){
     return next(err);
   }
@@ -139,7 +140,7 @@ exports.verifyEmail = async(req, res, next) => {
         const email = req.query.id.split('_')[1];
         const user = await User.updateOne({email}, {$set: {isEmailVerify: true }});
         if(!user) return res.json({status: false, message: 'You are not registered with this email'});
-        return res.json('Your email is successfuly verifyed');
+        return res.json(`Your email is successfuly verifyed`);
 
       } else {
         return res.json({status: false, message: 'Your email is not verifyed'});

@@ -9,6 +9,7 @@ export class AppComponent {
   
   isUserLoggedIn!: boolean;
   title!: string;
+  userId: any;
 
   constructor(){
     if(localStorage.getItem('access_token')){

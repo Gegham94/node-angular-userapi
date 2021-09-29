@@ -12,7 +12,7 @@ export class RegisterService {
   API_URL = environment.API_URL;
   httpOptions: any;
   form: FormGroup;
-  formData: any = new FormData();
+  formData: any;
 
   constructor(private http: HttpClient, public fb: FormBuilder) { 
     this.httpOptions= { Headers: new HttpHeaders({
@@ -39,6 +39,7 @@ export class RegisterService {
   }
 
   sendData(){
+    this.formData = new FormData();
     this.formData.append("email", this.form.get('email')?.value);
     this.formData.append("password", this.form.get('password')?.value);
     this.formData.append("firstName", this.form.get('firstName')?.value);

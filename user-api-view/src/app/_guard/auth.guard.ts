@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
    }
 
   canActivate(): Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.accessToken!=undefined && this.accessToken!=null) {
+    if (this.accessToken && this.accessToken!=undefined && this.accessToken!=null) {
       return true;
     }
     localStorage.removeItem('access_token');

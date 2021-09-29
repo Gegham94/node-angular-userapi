@@ -26,6 +26,8 @@ export class UserComponent implements OnInit {
   isEmailVerify: any;
   image: any;
 
+  verifyAfterCreate=true;
+
   constructor(
     private activateRouter: ActivatedRoute, 
     public usersService : UsersService, 
@@ -51,7 +53,7 @@ export class UserComponent implements OnInit {
   }
 
   openVerifyMessagePopup(){
-    this.usersService.sendEmailVerifyMessage(this.email, this.firstName).subscribe((response: any)=>{
+    this.usersService.sendEmailVerifyMessage(this.email, this.firstName, this.verifyAfterCreate).subscribe((response: any)=>{
       if(response.status == 'done'){
         this.dialog.open(UserEmailVerifyMessageSendPopupComponent,{
           width: '250px'

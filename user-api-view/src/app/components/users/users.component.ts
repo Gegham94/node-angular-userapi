@@ -24,8 +24,8 @@ export class UsersComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.resData);  
     });
   }
-
   clickedRows(row : any){
     this.router.navigate(['users-api/', row._id]);
   }
+  
 }
