@@ -35,7 +35,6 @@ export class UserComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('xxxxxxx')
     this.activateRouter.params.subscribe(params => {
       this.usersService.getById(params.id).subscribe((response: any)=>{
         this.id = response.user._id
@@ -47,6 +46,8 @@ export class UserComponent implements OnInit {
         this.dateOfBirth = response.user.dateOfBirth;
         this.isEmailVerify = response.user.isEmailVerify;
         this.image = response.user.image;
+
+        localStorage.setItem('email_status', response.user.isEmailVerify);
       }, (error) => {
         console.log('error is ', error);
       });
@@ -67,7 +68,7 @@ export class UserComponent implements OnInit {
   openEditPopup(): void {
     if(localStorage.getItem('email_status')=='true'){
       this.dialog.open(UserEditPopupComponent, {
-        width: '225px',
+        width: '230px',
         data: {
           id: this.id,
           firstName : this.firstName,
