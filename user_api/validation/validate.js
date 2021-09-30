@@ -15,7 +15,7 @@ function isValidData (data){
 }
 
 exports.checkUserInfo = async (req, res) => {
-  let { email, firstName, lastName, possition, gender, dateOfBirth } = req.body;
+  let { email, firstName, lastName, possition, gender } = req.body;
 
   if( gender == 'male' || gender == 'female'){
     const validEmail = await isValidEmail(email);
@@ -29,9 +29,6 @@ exports.checkUserInfo = async (req, res) => {
 
     const validPossition= await isValidData(possition);
     if(!validPossition.status) return res.json({message: `${validPossition.data}_is incorrect`});
-
-    const validDateOfBirth= await isValidData(dateOfBirth);
-    if(!validDateOfBirth.status) return res.json({message: `${validDateOfBirth.data}_is incorrect, type like this "DD.MM.YYYY"`});
 
     const validGender= await isValidData(gender);
     if(!validGender.status) return res.json({message: `${validGender.data}_is incorrect`});

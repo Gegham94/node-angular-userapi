@@ -13,11 +13,14 @@ export class RegisterComponent implements OnInit {
 
   UserPossition: any = ['Manager', 'Developer'];
   UserGender: any = ['Male', 'Female'];
-  userId: any;
+  yyyy: any;
 
   constructor(private appComponent: AppComponent, public registerService : RegisterService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    let today = new Date();
+    this.yyyy = today.getFullYear()-8;
+  }
 
   submitForm(){
     this.registerService.sendData().subscribe((response: any)=>{

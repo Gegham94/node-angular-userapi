@@ -38,7 +38,7 @@ exports.getAllUsers = async(req, res, next) => {
 
 exports.getUserById = async(req, res, next) => {
   try{
-    const user = await User.findById({ _id: req.params.id})
+    const user = await User.findById(req.params.id);
     if(!user) return res.json({message: 'User is not found'});
     return res.status(200).send({user});
     
@@ -84,7 +84,7 @@ exports.createUser = async(req, res, next) => {
         const token = await createToken(savedUser.id);
         if(!token) return res.json({message: 'Token does not created !'});
 
-        return res.json({status: 'done', token, email_status: savedUser.isEmailVerify, userId: savedUser._id});
+        return res.json({status: 'done', token, email_status: savedUser.isEmailVerify});
         
       }).catch(err => {
         return res.status(201).send({ message: 'User is not saved !', status: err });
