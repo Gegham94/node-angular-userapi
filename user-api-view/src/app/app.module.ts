@@ -24,6 +24,8 @@ import { UserComponent } from './components/user/user.component';
 import { UsersComponent } from './components/users/users.component';
 import { UserEditPopupComponent } from './components/userEditPopup/userEditPopup.component';
 import { UserDeletePopupComponent } from './components/userDeletePopup/userDeletePopup.component';
+import { ProjectsComponent } from './components/projects/projects.component';
+import { CreateProjectComponent } from './create-project/create-project.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { UserDeletePopupComponent } from './components/userDeletePopup/userDelet
     LogoutComponent,
     UserComponent,
     UserEditPopupComponent,
-    UserDeletePopupComponent
+    UserDeletePopupComponent,
+    ProjectsComponent,
+    CreateProjectComponent
   ],
   imports: [
     BrowserModule,

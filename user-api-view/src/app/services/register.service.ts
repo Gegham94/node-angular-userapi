@@ -49,6 +49,6 @@ export class RegisterService {
     this.formData.append("dateOfBirth", this.form.get('dateOfBirth')?.value);
     this.formData.append("image", this.form.get('image')?.value);
     
-    return this.http.post(`${this.API_URL}/register`, this.formData, this.httpOptions);
+    return this.http.post(`${this.API_URL}/users-api/register`, this.formData, this.httpOptions);
   }
 }

@@ -17,6 +17,12 @@ const routes: Routes = [
   { path: 'users-api/logout', component: LogoutComponent },
   { path: 'users-api/list', canActivate: [AuthGuard], component: UsersComponent },
   { path: 'users-api/:id', canActivate: [AuthGuard], component: UserComponent },
+
+  // { path: 'projects-api/list', canActivate: [AuthGuard], component: LoginComponent },
+  // { path: 'projects-api/create', canActivate: [AuthGuard], component: RegisterComponent },
+  // { path: 'projects-api/assign_manager/:id', canActivate: [AuthGuard], component: LogoutComponent },
+  // { path: 'projects-api/assign_developer', canActivate: [AuthGuard], component: UsersComponent },
+  // { path: 'projects-api/delete/:id', canActivate: [AuthGuard], component: UserComponent },
 ];
 
 @NgModule({

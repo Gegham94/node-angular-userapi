@@ -1,0 +1,42 @@
+
+.table {
+  width: 100%;
+}
+.mat-header-cell{
+  font-size: 16px;
+  font-weight: bolder;
+  color: black;
+}
+
+.mat-column-title {
+  width: 15%;
+  height: 150px;
+  border-right: 1px solid currentColor;
+  text-align: center;
+}
+.mat-column-manager {
+  width: 15%;
+  height: 150px;
+  border-right: 1px solid currentColor;
+  text-align: center;
+}
+.mat-column-developer {
+  width: 15%;
+  height: 150px;
+  border-right: 1px solid currentColor;
+  text-align: center;
+}
+.mat-column-document {
+  width: 15%;
+  height: 150px;
+  border-right: 1px solid currentColor;
+  text-align: center;
+}
+.mat-row:hover .mat-cell {
+  background-color:rgba(128, 128, 128, 0.623);
+  opacity: 1;
+  color: rgba(15, 15, 15, 0.877);
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+}
