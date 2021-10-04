@@ -1,0 +1,40 @@
+<div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Create Project</mat-card-title>
+      </mat-card-header>
+  
+      <form [formGroup]="projectsService.form" (ngSubmit)="submitForm()" class="example-form">
+        <mat-card-content>
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Project name" formControlName="title">
+          </mat-form-field><br>
+  
+          <mat-form-field class="example-full-width">
+            <ngx-mat-file-input formControlName="document">
+            </ngx-mat-file-input>
+          </mat-form-field><br>
+
+          <!-- <mat-form-field class="example-full-width">
+            <mat-label>Manager</mat-label>
+            <mat-select (selectionChange)="projectsService.onChangeManager($event)">
+              <mat-option *ngFor="let manager of Users" [value]="manager.firstName">{{manager.firstName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field><br>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Developer</mat-label>
+            <mat-select (selectionChange)="projectsService.onChangeDeveloper($event)">
+              <mat-option *ngFor="let developer of Users" [value]="developer.firstName">{{developer.firstName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> -->
+
+        </mat-card-content>
+        <button mat-stroked-button color="accent" class="btn-block">Create</button>
+  
+      </form>
+    </mat-card>
+  </div>

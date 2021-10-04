@@ -13,7 +13,7 @@ export class ProjectsService {
   httpOptions: any;
   form: FormGroup;
   formData: any;
-  token;
+  token:any;
 
   constructor(private http: HttpClient, public fb: FormBuilder) { 
     this.token = localStorage.getItem('access_token');
@@ -23,10 +23,9 @@ export class ProjectsService {
         'content-type': 'application/json'
       })
     }
+
     this.form = this.fb.group({
       title: [''],
-      manager: [''],
-      developer: [''],
       document: ['']
     });
   }
@@ -43,14 +42,11 @@ export class ProjectsService {
   delete(id: any) {
     return this.http.delete(`${this.API_URL}/projects-api/delete/${id}`, this.httpOptions);
   }
-  sendData(){
+  create(){
     this.formData = new FormData();
     this.formData.append("title", this.form.get('title')?.value);
-    this.formData.append("manager", this.form.get('manager')?.value);
-    this.formData.append("developer", this.form.get('developer')?.value);
     this.formData.append("document", this.form.get('document')?.value);
-    
-    return this.http.post(`${this.API_URL}projects-api/create`, this.formData, this.httpOptions);
+    return this.http.post(`${this.API_URL}/projects-api/create`, this.formData, this.httpOptions);
   }
 
 }

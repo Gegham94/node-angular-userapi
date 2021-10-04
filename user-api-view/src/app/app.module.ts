@@ -13,6 +13,7 @@ import { AuthGuard } from './_guard/auth.guard';
 import { RegisterService } from './services/register.service';
 import { LoginService} from './services/login.service';
 import { UsersService} from './services/users.service';
+import { ProjectsService } from './services/projects.service';
 
 import { AppRoutingModule } from './routes/app-routing.module';
 
@@ -25,7 +26,8 @@ import { UsersComponent } from './components/users/users.component';
 import { UserEditPopupComponent } from './components/userEditPopup/userEditPopup.component';
 import { UserDeletePopupComponent } from './components/userDeletePopup/userDeletePopup.component';
 import { ProjectsComponent } from './components/projects/projects.component';
-import { CreateProjectComponent } from './components/create-project/create-project.component';
+import { CreateProjectComponent } from './components/createProject/createProject.component';
+
 
 @NgModule({
   declarations: [
@@ -56,8 +58,7 @@ import { CreateProjectComponent } from './components/create-project/create-proje
     RegisterService,
     LoginService,
     UsersService,
-    UserComponent,
-    LoginComponent,
+    ProjectsService,
     AppComponent,
     {
       provide: LocationStrategy,

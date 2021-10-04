@@ -37,7 +37,7 @@ exports.createProject = async (req, res, next) => {
 
     const { title , manager , developer } = req.body;
 
-    const validExtName = [".doc", ".docx", ".txt" , ".pdf", "xml"];
+    const validExtName = [".doc", ".docx", ".txt" , ".pdf", ".xml"];
     const fileExtName = path.extname(req.file.originalname);
     if(validExtName.indexOf(fileExtName) === -1){
       return res.json({status: 'Fail', message: 'Incorrect document type'})
@@ -55,9 +55,10 @@ exports.createProject = async (req, res, next) => {
 
     await project.save()
       .then(savedProject => {
-        return res.json({ message: 'Project is saved', data: savedProject});
+        console.log(savedProject)
+        return res.json({ status: 'done', data: savedProject});
       }).catch( err => {
-        return res.json({ message: 'Project is nod saved !', data: err });
+        return res.json({ status: 'fail', data: err });
       });
 
   } catch (err) {

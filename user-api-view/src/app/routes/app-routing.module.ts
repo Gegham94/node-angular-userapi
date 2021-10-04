@@ -10,7 +10,7 @@ import { RegisterComponent } from '../components/register/register.component';
 import { UsersComponent } from '../components/users/users.component';
 import { UserComponent } from '../components/user/user.component';
 import { ProjectsComponent } from '../components/projects/projects.component';
-import { CreateProjectComponent } from '../components/create-project/create-project.component';
+import { CreateProjectComponent } from '../components/createProject/createProject.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'users-api/login' },
@@ -22,9 +22,6 @@ const routes: Routes = [
 
   { path: 'projects-api/list', canActivate: [AuthGuard], component: ProjectsComponent },
   { path: 'projects-api/create', canActivate: [AuthGuard], component: CreateProjectComponent },
-  { path: 'projects-api/assign_manager/:id', canActivate: [AuthGuard], component: LogoutComponent },
-  { path: 'projects-api/assign_developer', canActivate: [AuthGuard], component: UsersComponent },
-  { path: 'projects-api/delete/:id', canActivate: [AuthGuard], component: UserComponent },
 ];
 
 @NgModule({

@@ -2,7 +2,6 @@ const { secretKey } = require('../config/configuration.json').jwt;
 const jwt = require('jsonwebtoken');
 
 module.exports = async (req, res, next) => {
-
   const token = req.headers['x-authorization'];
   if (!token) {
     return res.status(403).send('Token is not provided !');
